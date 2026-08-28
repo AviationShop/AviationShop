@@ -15,6 +15,8 @@ Her gün `www.aviationshop.com` üzerinde **rastgele** dolaşan agent. Aynı rot
 | Pull requests | Kapalı (mümkünse). Prompt zaten PR yasaklıyor |
 | Slack | İsteğe bağlı; günlük raporu kanala atsın |
 
+Cloudflare Turnstile bu ortamda otomatik tarayıcıyı kesti. Agent çalışsın istiyorsan Cloudflare’da Bot Fight / managed challenge’ı Cursor cloud agent için gevşet (veya gerçek tarayıcıya skip). Challenge’ı tamamen kapatmana gerek yok; agent’ın checkbox’ta sonsuza kadar dönmemesi yeterli.
+
 Aşağıdaki kısa metni automation prompt’una yapıştır. Agent bu dosyayı ve `wander-seeds.json` dosyasını repodan okur.
 
 ```
@@ -37,7 +39,9 @@ Onur tasarımcı. Sen meraklı bir müşteri gibi canlı vitrine girersin — sa
 
 ## Sert kurallar
 
-- Gerçek tarayıcı kullan (computer use). Cloudflare curl/fetch’i engeller; challenge bitene kadar bekle, sonra devam et. 2 dakikadan fazla challenge’da kalırsan bunu söyle ve dur.
+- Gerçek tarayıcı kullan (computer use). curl, fetch ve headless Playwright Cloudflare Turnstile’da kalır; checkbox kendiliğinden geçmez.
+- Challenge görünürse: sayfayı yenile, checkbox’a tıkla, 30–45 sn bekle. Geçerse devam et.
+- 2 dakikadan fazla “Performing security verification” / Turnstile’da kalırsan **dur**. Bunu “site müşterilere kapalı” diye raporlama — agent IP’si engellenmiş olabilir. Raporda yaz: “Cloudflare agent’ı kesti; vitrin kontrolü yapılamadı.” GitHub issue açma.
 - Checkout yok, ödeme yok, sipariş yok.
 - My Account’a giriş yok.
 - Live chat’e yazma; sayfayı kapatıyorsa kapat.

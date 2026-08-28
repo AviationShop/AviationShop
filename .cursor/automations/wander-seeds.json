@@ -44,8 +44,11 @@
   ],
   "known_collections": [
     "https://www.aviationshop.com/collections/boeing-737-gifts",
+    "https://www.aviationshop.com/collections/pilot-headsets",
+    "https://www.aviationshop.com/collections/flight-bags",
     "https://www.aviationshop.com/collections/designed-stud-earrings"
   ],
+  "cart": "https://www.aviationshop.com/cart",
   "menu_departments": [
     "View All Products",
     "Best-Selling Products",
