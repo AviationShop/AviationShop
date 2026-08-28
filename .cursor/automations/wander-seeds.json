@@ -1,0 +1,69 @@
+{
+  "store": "https://www.aviationshop.com",
+  "note": "Live navigation on the store always wins. These URLs are starting points and fallbacks, not a fixed daily route.",
+  "search_queries": [
+    "Boeing 737",
+    "Airbus A320",
+    "Turkish Airlines",
+    "Emirates",
+    "Lufthansa",
+    "Ryanair",
+    "pilot headset",
+    "bomber jacket",
+    "tail keychain",
+    "canvas print",
+    "airplane pillow",
+    "mug",
+    "iPhone case",
+    "epaulettes",
+    "watch",
+    "hoodie",
+    "model airplane",
+    "Remove Before Flight",
+    "cabin crew",
+    "Cessna"
+  ],
+  "pages": [
+    "https://www.aviationshop.com/",
+    "https://www.aviationshop.com/pages/about-us",
+    "https://www.aviationshop.com/pages/reviews",
+    "https://www.aviationshop.com/pages/pilot-resources",
+    "https://www.aviationshop.com/pages/aviation-tools",
+    "https://www.aviationshop.com/blogs/news"
+  ],
+  "tools": [
+    "https://www.aviationshop.com/pages/aviation-tools",
+    "https://www.aviationshop.com/pages/metar-decoder",
+    "https://www.aviationshop.com/pages/crosswind-calculator",
+    "https://www.aviationshop.com/pages/weight-balance-calculator",
+    "https://www.aviationshop.com/pages/fuel-burn-calculator",
+    "https://www.aviationshop.com/pages/density-altitude-calculator",
+    "https://www.aviationshop.com/pages/holding-pattern-entry",
+    "https://www.aviationshop.com/pages/tas-ias-converter",
+    "https://www.aviationshop.com/pages/flight-time-estimator"
+  ],
+  "known_collections": [
+    "https://www.aviationshop.com/collections/boeing-737-gifts",
+    "https://www.aviationshop.com/collections/designed-stud-earrings"
+  ],
+  "menu_departments": [
+    "View All Products",
+    "Best-Selling Products",
+    "All Collections",
+    "Trending Products",
+    "Pilot Gear & Accessories",
+    "Accessories",
+    "Clothing",
+    "Home Accessories",
+    "Key Chains",
+    "Jewelries",
+    "Bags & Cases",
+    "Watches & Clocks",
+    "Phone Cases",
+    "Canvas Prints & Posters",
+    "Model Airplanes & Other",
+    "Mugs & Travel Mugs & Glasses",
+    "All Car Accessories",
+    "Aviation Tools"
+  ]
+}
