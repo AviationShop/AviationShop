@@ -2,22 +2,50 @@
 
 Her gün `www.aviationshop.com` üzerinde **rastgele** dolaşan agent. Aynı rotayı ezberlemesin; her koşuda farklı kategori, ürün ve açıklama görsün.
 
-## Cursor Automation ayarı
+## Senin Mac’in, her gün 10:00
+
+Bu cloud sohbet senin bilgisayarını açamaz. 10:00’da **senin Chrome’un** çalışsın istiyorsan kurulumu bir kez Mac’te yap.
+
+**A — Cursor Desktop (en kolay)**
+
+1. Cursor’u kendi Mac’inde aç.
+2. Chat’e yaz: `/automate her gün saat 10:00’da www.aviationshop.com’u rastgele gez, farklı ürün ve description’lara bak. Prompt: .cursor/automations/daily-store-wander.md`
+3. Runtime olarak bu makineyi seçebiliyorsan seç. Computer use açık olsun.
+4. Mac 10:00’da açık (veya uyandırılmış) olsun.
+
+**B — macOS 10:00 alarmı (Cursor CLI)**
+
+Mac Terminal’de, bu reponun klasöründe:
+
+```bash
+chmod +x scripts/macos/install-10am.sh scripts/macos/daily-store-wander.sh
+./scripts/macos/install-10am.sh
+```
+
+Bu, her gün **yerel saat 10:00**’da `agent -p` ile wander’ı başlatır. Kaldırmak için: `./scripts/macos/uninstall-10am.sh`
+
+Gerekli: [Cursor CLI](https://cursor.com/docs/cli/overview) (`curl https://cursor.com/install -fsS | bash`), bir kez `agent login`, Mac’in 10:00’da uyanık olması.
+
+Cloudflare senin ev IP’nle genelde cloud agent’tan daha kolay geçer.
+
+---
+
+## Cloud Automation (bilgisayar kapalıyken)
 
 [cursor.com/automations](https://cursor.com/automations) → New automation:
 
 | Ayar | Değer |
 | --- | --- |
-| Trigger | Scheduled, her gün 09:00 Europe/Istanbul (`0 6 * * *` UTC) |
+| Trigger | Scheduled, her gün 10:00 Europe/Istanbul (`0 7 * * *` UTC) |
 | Repository | `AviationShop/AviationShop` |
 | Computer use | Açık |
 | Memories | Açık — aynı ürünleri 14 gün tekrar etmesin |
 | Pull requests | Kapalı (mümkünse). Prompt zaten PR yasaklıyor |
 | Slack | İsteğe bağlı; günlük raporu kanala atsın |
 
-Cloudflare Turnstile bu ortamda otomatik tarayıcıyı kesti. Agent çalışsın istiyorsan Cloudflare’da Bot Fight / managed challenge’ı Cursor cloud agent için gevşet (veya gerçek tarayıcıya skip). Challenge’ı tamamen kapatmana gerek yok; agent’ın checkbox’ta sonsuza kadar dönmemesi yeterli.
+Bu yol Cursor cloud tarayıcısını kullanır, senin Mac’ini değil. Cloudflare Turnstile cloud tarayıcıyı keserse vitrine giremez; o zaman A veya B’yi kullan.
 
-Aşağıdaki kısa metni automation prompt’una yapıştır. Agent bu dosyayı ve `wander-seeds.json` dosyasını repodan okur.
+Aşağıdaki kısa metni automation prompt’una yapıştır.
 
 ```
 Wander the LIVE Aviation Shop storefront today.
@@ -37,9 +65,11 @@ Write the daily report in Turkish for Onur.
 
 Onur tasarımcı. Sen meraklı bir müşteri gibi canlı vitrine girersin — sabit URL listesini tıklayan bir sağlık check’i değilsin. Katalog 100k+ ürün ve 1600+ koleksiyon. Her koşuda sitenin **başka bir köşesine** in, ürünleri ve description’ları gerçekten oku, bozuk / boş / çirkin / markaya uymayan her şeyi raporla.
 
+Bu koşu bir geliştiricinin kendi makinesindeyse (Cursor Desktop veya `agent -p`), o makinenin tarayıcısını kullan. Cloud sandbox’taysan computer use kullan.
+
 ## Sert kurallar
 
-- Gerçek tarayıcı kullan (computer use). curl, fetch ve headless Playwright Cloudflare Turnstile’da kalır; checkbox kendiliğinden geçmez.
+- Gerçek tarayıcı kullan. curl, fetch ve headless Playwright Cloudflare Turnstile’da kalır; checkbox kendiliğinden geçmez.
 - Challenge görünürse: sayfayı yenile, checkbox’a tıkla, 30–45 sn bekle. Geçerse devam et.
 - 2 dakikadan fazla “Performing security verification” / Turnstile’da kalırsan **dur**. Bunu “site müşterilere kapalı” diye raporlama — agent IP’si engellenmiş olabilir. Raporda yaz: “Cloudflare agent’ı kesti; vitrin kontrolü yapılamadı.” GitHub issue açma.
 - Checkout yok, ödeme yok, sipariş yok.
@@ -51,7 +81,7 @@ Onur tasarımcı. Sen meraklı bir müşteri gibi canlı vitrine girersin — sa
 
 ## Bugünkü yolu nasıl seçersin (rastgele olmak zorunda)
 
-1. Memories’den son 14 günde gezilen URL / collection / product handle listesini oku. Bunları tekrar açma (eski bir bug’ı doğrulamak hariç).
+1. Memories’den (veya `~/.aviationshop-wander-log.md` dosyasından) son 14 günde gezilen URL / collection / product handle listesini oku. Bunları tekrar açma (eski bir bug’ı doğrulamak hariç).
 2. Şansı bugünün UTC tarihi (`YYYY-MM-DD`) ve saatten birkaç ekstra zar ile kur. Aynı gün iki koşu bile ayrışabilsin.
 3. Önce homepage’i aç. Gerçek içerik gelene kadar bekle. Desktop screenshot al.
 4. Aşağıdaki görevlerden **rastgele 2 veya 3** tanesini çalıştır. Dün çalıştırdığın çifti bugün tekrarlama.
@@ -92,7 +122,7 @@ Viewport ~390×844. Bugünkü yoldan bir koleksiyon + bir PDP’yi tekrarla. Hea
 
 ## Coverage memory
 
-Gezinin sonunda Memories’e ekle:
+Gezinin sonunda Memories’e ve varsa `~/.aviationshop-wander-log.md` dosyasına ekle:
 
 - tarih
 - çalıştırılan görevler
@@ -106,7 +136,7 @@ Gezinin sonunda Memories’e ekle:
 
 ## Çıktı
 
-Agent konuşmasına kısa Türkçe günlük rapor yaz:
+Kısa Türkçe günlük rapor yaz (CLI koşusunda stdout + `~/Desktop/aviationshop-wander-YYYY-MM-DD.md`):
 
 1. **Bugün nereye gittim** — URL listesi
 2. **Ürün notları** — 3–6 ürün, her biri bir cümle (description, görsel, variant)
