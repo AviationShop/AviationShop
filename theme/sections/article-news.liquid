@@ -1,0 +1,338 @@
+{% comment %} Aviation News — Article Detail (redesign 2026-06-16)
+  2026-08-29 (Onur): kapak/kart görselleri 'article-hero-src' snippet'i üzerinden çözülüyor
+  (metafield aviation_news.hero_image_url → yoksa article.image fallback). {% endcomment %}
+{% render 'article-recs-cta-fix' %}
+
+<style>
+  .article-news { --an-hero-bg:#0a0f1a; --an-bg:#fff; --an-card-bg:#f4f6f9; --an-text:#11182a; --an-text-body:#2b3242; --an-text-muted:#647084; --an-accent:#4a1942; --an-border:#e7eaf0; --an-body-font:Georgia,'Times New Roman',serif; --an-heading-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--an-bg); color:var(--an-text-body); font-family:var(--an-body-font); padding-bottom:80px; overflow-x:hidden; }
+  .article-news * { box-sizing:border-box; }
+  .article-news img { max-width:100% !important; height:auto !important; }
+  .article-news .an-body a { color:var(--an-accent); text-decoration:underline; text-decoration-color:rgba(74,25,66,0.3); text-underline-offset:3px; }
+  .article-news .an-body a:hover { text-decoration-color:var(--an-accent); }
+  .an-hero { position:relative; width:100%; max-height:560px; overflow:hidden; }
+  .an-hero img { width:100%; height:100%; max-height:560px; object-fit:cover; display:block; }
+  .an-hero-overlay { position:absolute; bottom:0; left:0; right:0; height:200px; background:linear-gradient(to top,var(--an-bg) 0%,transparent 100%); }
+  .an-header { max-width:760px; margin:-70px auto 0; position:relative; z-index:2; padding:0 16px; }
+  .an-cat { display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; padding:5px 12px; border-radius:4px; background:#1f3a5f; color:#fff; margin-bottom:16px; }
+  .an-cat.red{background:#e63946;} .an-cat.amber{background:#b8730a;} .an-cat.green{background:#1f7a4d;}
+  .an-title { font-family:var(--an-heading-font); font-size:2.3rem; font-weight:800; line-height:1.2; margin:0 0 4px; color:var(--an-text); letter-spacing:-0.5px; }
+  .an-byline { display:flex; align-items:center; gap:13px; padding:20px 0 22px; border-bottom:1px solid var(--an-border); margin-bottom:36px; font-family:var(--an-heading-font); }
+  .an-byline-av { width:46px; height:46px; border-radius:50%; background:var(--an-accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:17px; flex-shrink:0; }
+  .an-byline-info { font-size:0.88rem; color:var(--an-text-muted); line-height:1.55; }
+  .an-byline-info strong { display:block; color:var(--an-text); font-size:0.96rem; font-weight:700; }
+  .an-body { max-width:720px; margin:0 auto; padding:0 16px; background:var(--an-bg); }
+  .an-body article { font-size:20.7px; line-height:1.85; color:var(--an-text-body); font-family:var(--an-body-font); }
+  .an-body article p { margin:0 0 24px; }
+  .an-body article h2 { font-family:var(--an-heading-font); font-size:1.75rem; font-weight:700; margin:48px 0 16px; color:var(--an-text); line-height:1.3; }
+  .an-body article h3 { font-family:var(--an-heading-font); font-size:1.4rem; font-weight:600; margin:36px 0 12px; color:var(--an-text); }
+  .an-body article img { width:100%; border-radius:10px; margin:8px 0 28px; display:block; }
+  .an-body article ul, .an-body article ol { margin:0 0 24px 24px; }
+  .an-body article li { margin-bottom:10px; }
+  .an-body article blockquote { border-left:4px solid var(--an-accent); margin:36px 0; padding:20px 24px; background:rgba(74,25,66,0.05); border-radius:0 8px 8px 0; font-style:italic; font-size:1.25rem; line-height:1.7; color:#475569; }
+  .an-body article blockquote p { margin:0; }
+  .an-body article table { width:100%; border-collapse:collapse; margin:24px 0; font-size:0.95rem; font-family:var(--an-heading-font); }
+  .an-body article th, .an-body article td { padding:12px 16px; border:1px solid var(--an-border); text-align:left; }
+  .an-body article th { background:var(--an-card-bg); font-weight:600; color:var(--an-text); }
+  .an-excerpt { font-size:1.28rem; line-height:1.65; color:#475569; margin-bottom:30px; font-weight:400; font-family:var(--an-heading-font); padding-left:16px; border-left:3px solid var(--an-accent); }
+  .an-share { display:flex; align-items:center; gap:10px; max-width:720px; margin:40px auto 0; padding:16px; border-top:1px solid var(--an-border); border-bottom:1px solid var(--an-border); font-family:var(--an-heading-font); }
+  .an-share span { font-size:0.85rem; font-weight:600; color:var(--an-text-muted); margin-right:4px; }
+  .an-share a { width:40px; height:40px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--an-card-bg); color:var(--an-text); font-size:18px; text-decoration:none; transition:background 0.15s,color 0.15s; }
+  .an-share a:hover { background:var(--an-accent); color:#fff; }
+  .an-related { max-width:900px; margin:50px auto 0; padding:0 16px; }
+  .an-related-title { font-family:var(--an-heading-font); font-size:1.4rem; font-weight:700; color:var(--an-text); margin-bottom:18px; display:inline-flex; align-items:center; gap:9px; }
+  .an-related-title::before { content:''; width:4px; height:20px; background:#e63946; border-radius:2px; }
+  .an-related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .an-related-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--an-border); border-radius:10px; overflow:hidden; text-decoration:none; color:inherit; transition:transform 0.15s,box-shadow 0.15s; }
+  .an-related-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(16,24,42,0.10); }
+  .an-related-img { aspect-ratio:16/9; width:100%; object-fit:cover; background:#0f1626; }
+  .an-related-body { padding:13px 14px 15px; }
+  .an-related-body h4 { font-family:var(--an-heading-font); font-size:14px; line-height:1.4; font-weight:600; color:var(--an-text); margin:0 0 6px; }
+  .an-related-body .an-related-date,
+  .an-latest-body .an-related-date { font-family:var(--an-heading-font); font-size:11.5px; color:var(--an-text-muted); line-height:1.45; }
+  .av-datetime { font-variant-numeric:tabular-nums; }
+  .an-product-recs { max-width:900px; margin:50px auto 0; padding:0 16px; }
+  .an-product-recs-inner { background:#fff; border:1px solid var(--an-border); border-radius:14px; padding:36px 28px 28px; box-shadow:0 2px 16px rgba(0,0,0,0.06); }
+  .an-recs-header { text-align:center; margin-bottom:28px; }
+  .an-recs-title { font-family:var(--an-heading-font); font-size:1.5rem; font-weight:700; color:var(--an-text); margin:0 0 8px; }
+  .an-recs-subtitle { font-family:var(--an-heading-font); font-size:0.92rem; color:var(--an-text-muted); margin:0; }
+  .an-recs-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-bottom:24px; }
+  .an-recs-card { text-decoration:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform 0.2s; }
+  .an-recs-card:hover { transform:translateY(-3px); }
+  .an-recs-img-wrap { width:100%; aspect-ratio:1; border-radius:10px; overflow:hidden; background:var(--an-card-bg); margin-bottom:10px; border:1px solid var(--an-border); }
+  .an-recs-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; border-radius:0; margin:0; }
+  .an-recs-card-title { font-family:var(--an-heading-font); font-size:0.78rem; font-weight:500; color:var(--an-text); line-height:1.35; margin-bottom:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .an-recs-price { font-family:var(--an-heading-font); font-size:0.82rem; font-weight:700; color:var(--an-text); }
+  .an-recs-cta { display:inline-block; text-align:center; font-family:var(--an-heading-font); font-weight:700; color:#fff; background:var(--an-accent); padding:11px 22px; border-radius:8px; text-decoration:none; }
+  @media (max-width:768px) { .an-recs-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; padding-bottom:8px; } .an-recs-card { min-width:130px; max-width:130px; scroll-snap-align:start; } .an-product-recs-inner { padding:24px 16px 20px; } }
+  @media (min-width:769px) and (max-width:1024px) { .an-recs-grid { grid-template-columns:repeat(3,1fr); } .an-related-grid { grid-template-columns:repeat(2,1fr); } }
+  .an-footer-tags { max-width:720px; margin:40px auto 0; padding:24px 16px 0; border-top:1px solid var(--an-border); display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .an-footer-tags-label { font-family:var(--an-heading-font); font-size:0.85rem; font-weight:600; color:var(--an-text-muted); margin-right:8px; }
+  .an-footer-tag { background:var(--an-card-bg); border:1px solid var(--an-border); color:var(--an-text-muted); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-family:var(--an-heading-font); text-decoration:none; }
+  .an-footer-tag:hover { background:var(--an-accent); border-color:var(--an-accent); color:#fff; }
+  .an-prevnext { max-width:720px; margin:40px auto 0; padding:24px 16px 0; border-top:1px solid var(--an-border); display:flex; justify-content:space-between; gap:16px; font-family:var(--an-heading-font); }
+  .an-prevnext-link { display:flex; flex-direction:column; gap:4px; text-decoration:none; max-width:45%; }
+  .an-prevnext-link:hover .an-prevnext-title { color:var(--an-accent); }
+  .an-prevnext-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--an-text-muted); font-weight:600; }
+  .an-prevnext-title { font-size:0.95rem; font-weight:600; color:var(--an-text); line-height:1.35; }
+  .an-prevnext-next { text-align:right; margin-left:auto; }
+  .an-back { max-width:720px; margin:32px auto 0; padding:0 16px; }
+  .an-back a { font-family:var(--an-heading-font); font-size:0.9rem; color:var(--an-accent); text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+  @media (max-width:768px) { .an-title { font-size:1.7rem; } .an-body article { font-size:18.4px; line-height:1.8; } .an-excerpt { font-size:1.12rem; } .an-related-grid { grid-template-columns:1fr; } .an-header { margin-top:-40px; } .an-prevnext { flex-direction:column; gap:20px; } .an-prevnext-link { max-width:100%; } .an-prevnext-next { text-align:left; } }
+  @media (min-width:769px) { .an-body article img { width:calc(100% + 80px); margin-left:-40px; max-width:calc(100% + 80px); border-radius:12px; } }
+  .an-latest { max-width:900px; margin:48px auto 0; padding:0 16px; }
+  .an-latest .an-latest-title { margin-bottom:16px; }
+  .an-latest-rail { display:flex; gap:16px; overflow-x:auto; padding:2px 2px 14px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+  .an-latest-rail::-webkit-scrollbar { height:6px; }
+  .an-latest-rail::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+  .an-latest-card { flex:0 0 184px; display:flex; flex-direction:column; background:#fff; border:1px solid var(--an-border); border-radius:10px; overflow:hidden; text-decoration:none; color:inherit; scroll-snap-align:start; transition:transform 0.15s,box-shadow 0.15s; }
+  .an-latest-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(16,24,42,0.10); }
+  .an-latest-img { width:100%; aspect-ratio:16/9; object-fit:cover; background:#0f1626; display:block; }
+  .an-latest-body { padding:11px 13px 13px; }
+  .an-latest-body h4 { font-family:var(--an-heading-font); font-size:13.5px; line-height:1.4; font-weight:600; color:var(--an-text); margin:0 0 6px; }
+  .an-progress { position:fixed; top:0; left:0; right:0; height:3px; background:transparent; z-index:9999; pointer-events:none; }
+  .an-progress-fill { height:100%; width:0; background:#e63946; transition:width 0.08s linear; }
+  @media (max-width:768px) { .an-latest-card { flex:0 0 152px; } .an-latest { margin-top:36px; } }
+  .an-crumbs { font-family:var(--an-heading-font); font-size:12.5px; color:var(--an-text-muted); margin:0 0 14px; display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+  .an-crumbs a { color:var(--an-text-muted); text-decoration:none; }
+  .an-crumbs a:hover { color:var(--an-accent); text-decoration:underline; }
+  .an-crumb-sep { color:#b8c0cc; }
+  .an-crumb-cur { color:var(--an-text); font-weight:600; }
+  .an-header a.an-cat { text-decoration:none; }
+  .an-byline { flex-wrap:wrap; }
+  .an-byline-source { color:var(--an-text-muted); text-decoration:underline; text-decoration-color:rgba(100,112,132,0.4); text-underline-offset:2px; }
+  .an-byline-source:hover { color:var(--an-accent); }
+  .an-byline-share { display:flex; gap:7px; margin-left:auto; }
+  .an-byline-share a { width:34px; height:34px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--an-card-bg); color:var(--an-text); font-size:15px; text-decoration:none; transition:background 0.15s,color 0.15s; }
+  .an-byline-share a:hover { background:var(--an-accent); color:#fff; }
+  @media (max-width:768px) { .an-byline-share { margin-top:8px; } }
+</style>
+
+{%- assign at = article.title | downcase -%}
+{%- assign acat = 'Airlines' -%}{%- assign acls = '' -%}
+{%- if at contains 'crash' or at contains 'emergency' or at contains 'diverts' or at contains 'mayday' or at contains 'incident' or at contains 'evacuat' or at contains 'killed' or at contains 'investigation' or at contains 'grounded' or at contains 'bomb' -%}{%- assign acat = 'Safety' -%}{%- assign acls = 'red' -%}
+{%- elsif at contains 'route' or at contains 'launch' or at contains 'nonstop' or at contains 'direct flight' -%}{%- assign acat = 'Routes' -%}{%- assign acls = 'green' -%}
+{%- elsif at contains 'profit' or at contains 'bankrupt' or at contains 'liquidat' or at contains 'order' or at contains 'fleet' or at contains 'delivery' or at contains 'lessor' -%}{%- assign acat = 'Industry' -%}{%- assign acls = 'amber' -%}
+{%- elsif at contains 'boeing' or at contains 'airbus' or at contains 'embraer' or at contains 'cessna' -%}{%- assign acat = 'Aircraft' -%}{%- endif -%}
+{%- assign words = article.content | strip_html | split: ' ' | size -%}
+{%- assign rt = words | divided_by: 200 | plus: 1 -%}
+{%- assign ainit = article.author | strip | slice: 0, 1 | upcase -%}
+{%- assign share_url = article.url | prepend: shop.url | url_encode -%}
+{%- assign share_title = article.title | url_encode -%}
+{%- capture an_hero_src %}{% render 'article-hero-src', article: article, width: 1600 %}{% endcapture -%}
+{%- assign an_hero_src = an_hero_src | strip -%}
+{%- if article.image and article.image.alt != blank -%}{%- assign an_hero_alt = article.image.alt -%}{%- else -%}{%- assign an_hero_alt = article.title -%}{%- endif -%}
+
+<div class="article-news">
+  <div class="an-progress"><div class="an-progress-fill" id="anProgressFill"></div></div>
+  {%- if an_hero_src != blank -%}
+    <div class="an-hero"><img src="{{ an_hero_src }}" alt="{{ an_hero_alt | escape }}" loading="eager"><div class="an-hero-overlay"></div></div>
+  {%- endif -%}
+
+  <div class="an-header">
+    <nav class="an-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="an-crumb-sep">&rsaquo;</span><a href="{{ blog.url }}">Aviation News</a><span class="an-crumb-sep">&rsaquo;</span><span class="an-crumb-cur">{{ acat }}</span></nav>
+    <a href="{{ blog.url }}" class="an-cat {{ acls }}">{{ acat }}</a>
+    <h1 class="an-title">{{ article.title }}</h1>
+    <div class="an-byline">
+      <div class="an-byline-av">{{ ainit }}</div>
+      <div class="an-byline-info"><strong>{{ article.author }}</strong>{% render 'article-datetime', article: article, fmt: 'long' %} &middot; {{ rt }} min read &middot; {% render 'article-view-tracker', article: article %} &middot; <a href="/pages/newsroom" class="an-byline-source">Aviation Shop Newsroom</a></div>
+      <div class="an-byline-share">
+        <a href="https://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener" aria-label="Share on X"><i class="uil uil-twitter"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="uil uil-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="uil uil-linkedin"></i></a>
+        <a href="https://api.whatsapp.com/send?text={{ share_title }}%20{{ share_url }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="uil uil-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="an-body">
+    <div class="an-cats-zone" data-an-cats-zone="top"></div>
+    {%- unless article.excerpt == blank -%}<p class="an-excerpt">{{ article.excerpt | strip_html }}</p>{%- endunless -%}
+    <article>{{ article.content }}</article>
+  </div>
+
+  <div class="an-share">
+    <span>Share</span>
+    <a href="https://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener" aria-label="Share on X"><i class="uil uil-twitter"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="uil uil-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="uil uil-linkedin"></i></a>
+    <a href="https://api.whatsapp.com/send?text={{ share_title }}%20{{ share_url }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="uil uil-whatsapp"></i></a>
+  </div>
+
+  {% render 'article-comments', article: article %}
+  {% render 'newsletter-signup' %}
+
+  {%- comment -%} 2026-09-01: allow aircraft tokens AND catalog airline handles (*-enthusiasts / -airlines / -airways). LATAM still denied (2026-07-03 trademark). Render every passing collection:related tag — first-tag-only used to drop airline recs when the airline handle sorted first. {%- endcomment -%}
+  {%- assign ac_toks = 'boeing,airbus,embraer,cessna,concorde,mcdonnell,md-11,md11,dreamliner,a220,a320,a321,a330,a340,a350,a380,737,747,757,767,777,787,727,fighter,f-16,f16,-designed' | split: ',' -%}
+  {%- assign rec_handles = '' -%}
+  {%- for tag in article.tags -%}
+    {%- if tag contains 'collection:related:' -%}
+      {%- assign rec_handle = tag | remove: 'collection:related:' | strip | downcase -%}
+      {%- assign rec_ok = false -%}
+      {%- unless rec_handle contains 'latam' -%}
+        {%- if rec_handle contains '-enthusiasts' or rec_handle contains '-airlines' or rec_handle contains '-airways' -%}
+          {%- assign rec_ok = true -%}
+        {%- endif -%}
+        {%- unless rec_ok -%}
+          {%- for tok in ac_toks -%}{%- if rec_handle contains tok -%}{%- assign rec_ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+        {%- endunless -%}
+      {%- endunless -%}
+      {%- if rec_ok -%}
+        {%- assign rec_needle = ',' | append: rec_handle | append: ',' -%}
+        {%- assign rec_hay = ',' | append: rec_handles -%}
+        {%- unless rec_hay contains rec_needle -%}{%- assign rec_handles = rec_handles | append: rec_handle | append: ',' -%}{%- endunless -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if rec_handles == '' -%}
+    {%- for tag in article.tags -%}
+      {%- unless tag contains 'collection:random:' or tag contains 'collection:related:' -%}
+        {%- if tag contains 'collection:' -%}
+          {%- assign rec_handle = tag | split: 'collection:' | last | strip | downcase -%}
+          {%- assign rec_ok = false -%}
+          {%- unless rec_handle contains 'latam' -%}
+            {%- if rec_handle contains '-enthusiasts' or rec_handle contains '-airlines' or rec_handle contains '-airways' -%}
+              {%- assign rec_ok = true -%}
+            {%- endif -%}
+            {%- unless rec_ok -%}
+              {%- for tok in ac_toks -%}{%- if rec_handle contains tok -%}{%- assign rec_ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+            {%- endunless -%}
+          {%- endunless -%}
+          {%- if rec_ok -%}{%- assign rec_handles = rec_handle | append: ',' -%}{%- break -%}{%- endif -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- assign recs_rendered = 0 -%}
+  {%- assign rec_list = rec_handles | split: ',' -%}
+  {%- for rec_handle in rec_list -%}
+    {%- if rec_handle != blank -%}
+      {%- assign rec_col = collections[rec_handle] -%}
+      {%- if rec_col != blank -%}
+        {%- assign recs_rendered = recs_rendered | plus: 1 -%}
+        <div class="an-product-recs"><div class="an-product-recs-inner">
+          <div class="an-recs-header"><h2 class="an-recs-title">Discover {{ rec_col.title }} Merchandise</h2><p class="an-recs-subtitle">Explore our exclusive {{ rec_col.title | downcase }} apparel, models, and accessories.</p></div>
+          <div class="an-recs-grid">{%- for product in rec_col.products limit: 6 -%}<a href="{{ product.url }}" class="an-recs-card"><div class="an-recs-img-wrap">{%- if product.featured_image -%}<img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy" width="300" height="300">{%- endif -%}</div><span class="an-recs-card-title">{{ product.title }}</span><span class="an-recs-price">{{ product.price | money }}</span></a>{%- endfor -%}</div>
+          <div style="text-align:center;"><a href="{{ rec_col.url }}" class="an-recs-cta">Shop {{ rec_col.title }} Collection &rarr;</a></div>
+        </div></div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%} an-news-cta-fallback: generic shop+tools CTA when no allowed related collection — channels news traffic + internal links + newsroom E-E-A-T {%- endcomment -%}
+  {%- if recs_rendered == 0 -%}
+    <div class="an-product-recs"><div class="an-product-recs-inner">
+      <div class="an-recs-header"><h2 class="an-recs-title">From Aviation Shop</h2><p class="an-recs-subtitle">Aviation gifts for pilots &amp; enthusiasts, plus free pilot tools — serving the aviation community since 2011.</p></div>
+      <div style="text-align:center;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="/collections/best-aviation-gifts" class="an-recs-cta">Shop Aviation Gifts &rarr;</a>
+        <a href="/pages/aviation-tools" class="an-recs-cta">Free Pilot Tools &rarr;</a>
+      </div>
+      <p style="text-align:center;font-size:12.5px;color:#6a7a8a;margin-top:14px;">About our coverage: <a href="/pages/newsroom" style="color:#6a7a8a;text-decoration:underline;">Newsroom &amp; Editorial Standards</a></p>
+    </div></div>
+  {%- endif -%}
+
+  {%- comment -%} an-hub-links: internal links → gift/aircraft hubs; authority + crawl flow from high-traffic news to hubs {%- endcomment -%}
+  <div class="an-hub-links" style="max-width:900px;margin:34px auto 0;padding:20px 16px;border-top:1px solid #e5e9ef;">
+    <p style="font-family:var(--an-heading-font);font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#0f1626;margin:0 0 7px;">Shop by Aircraft</p>
+    <p style="font-size:13.5px;line-height:1.95;margin:0 0 16px;color:#37414d;">
+      <a href="/collections/boeing-737-gifts">Boeing 737</a> &middot; <a href="/collections/boeing-747-gifts">747</a> &middot; <a href="/collections/boeing-777-gifts">777</a> &middot; <a href="/collections/boeing-787-gifts">787</a> &middot; <a href="/collections/airbus-a320-gifts">Airbus A320</a> &middot; <a href="/collections/airbus-a350-gifts">A350</a> &middot; <a href="/collections/airbus-a380-gifts">A380</a> &middot; <a href="/collections/cessna-gifts">Cessna</a> &middot; <a href="/collections/embraer-gifts">Embraer</a>
+    </p>
+    <p style="font-family:var(--an-heading-font);font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#0f1626;margin:0 0 7px;">Aviation Gifts For</p>
+    <p style="font-size:13.5px;line-height:1.95;margin:0;color:#37414d;">
+      <a href="/collections/gifts-for-pilots">Pilots</a> &middot; <a href="/collections/flight-attendant-gifts">Flight Attendants</a> &middot; <a href="/collections/student-pilot-gifts">Student Pilots</a> &middot; <a href="/collections/cfi-gifts">Flight Instructors</a> &middot; <a href="/collections/pilot-retirement-gifts">Pilot Retirement</a> &middot; <a href="/collections/aviation-enthusiast-gifts">Aviation Enthusiasts</a> &middot; <a href="/collections/military-pilot-gifts">Military Pilots</a> &middot; <a href="/collections/helicopter-pilot-gifts">Helicopter Pilots</a>
+    </p>
+  </div>
+
+  {%- comment -%} Related: same category first, then fill with latest (2026-06-30) {%- endcomment -%}
+  {%- if blog.articles.size > 1 -%}
+    {%- assign rel_want = 3 -%}
+    {%- assign rel_count = 0 -%}
+    {%- assign rel_shown = ',' -%}
+    <div class="an-related">
+      <h2 class="an-related-title">More in {{ acat }}</h2>
+      <div class="an-related-grid">
+        {%- for a in blog.articles -%}
+          {%- if a.id != article.id and rel_count < rel_want -%}
+            {%- assign t2 = a.title | downcase -%}
+            {%- assign cat2 = 'Airlines' -%}
+            {%- if t2 contains 'crash' or t2 contains 'emergency' or t2 contains 'diverts' or t2 contains 'mayday' or t2 contains 'incident' or t2 contains 'evacuat' or t2 contains 'killed' or t2 contains 'investigation' or t2 contains 'grounded' or t2 contains 'bomb' -%}{%- assign cat2 = 'Safety' -%}
+            {%- elsif t2 contains 'route' or t2 contains 'launch' or t2 contains 'nonstop' or t2 contains 'direct flight' -%}{%- assign cat2 = 'Routes' -%}
+            {%- elsif t2 contains 'profit' or t2 contains 'bankrupt' or t2 contains 'liquidat' or t2 contains 'order' or t2 contains 'fleet' or t2 contains 'delivery' or t2 contains 'lessor' -%}{%- assign cat2 = 'Industry' -%}
+            {%- elsif t2 contains 'boeing' or t2 contains 'airbus' or t2 contains 'embraer' or t2 contains 'cessna' -%}{%- assign cat2 = 'Aircraft' -%}{%- endif -%}
+            {%- if cat2 == acat -%}
+              {%- capture rel_src %}{% render 'article-hero-src', article: a, width: 400 %}{% endcapture -%}
+              {%- assign rel_src = rel_src | strip -%}
+              <a href="{{ a.url }}" class="an-related-card">
+                {%- if rel_src != blank -%}<img class="an-related-img" src="{{ rel_src }}" alt="{{ a.title | escape }}" loading="lazy">{%- else -%}<div class="an-related-img"></div>{%- endif -%}
+                <div class="an-related-body"><h4>{{ a.title }}</h4><div class="an-related-date">{% render 'article-datetime', article: a %}</div></div>
+              </a>
+              {%- assign rel_shown = rel_shown | append: a.id | append: ',' -%}
+              {%- assign rel_count = rel_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if rel_count < rel_want -%}
+          {%- for a in blog.articles -%}
+            {%- if a.id != article.id and rel_count < rel_want -%}
+              {%- assign idkey = a.id | prepend: ',' | append: ',' -%}
+              {%- unless rel_shown contains idkey -%}
+                {%- capture rel_src2 %}{% render 'article-hero-src', article: a, width: 400 %}{% endcapture -%}
+                {%- assign rel_src2 = rel_src2 | strip -%}
+                <a href="{{ a.url }}" class="an-related-card">
+                  {%- if rel_src2 != blank -%}<img class="an-related-img" src="{{ rel_src2 }}" alt="{{ a.title | escape }}" loading="lazy">{%- else -%}<div class="an-related-img"></div>{%- endif -%}
+                  <div class="an-related-body"><h4>{{ a.title }}</h4><div class="an-related-date">{% render 'article-datetime', article: a %}</div></div>
+                </a>
+                {%- assign rel_shown = rel_shown | append: a.id | append: ',' -%}
+                {%- assign rel_count = rel_count | plus: 1 -%}
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if blog.articles.size > 2 -%}
+      <div class="an-latest">
+        <h2 class="an-related-title an-latest-title">Latest Aviation News</h2>
+        <div class="an-latest-rail">
+          {%- assign lat_count = 0 -%}
+          {%- for a in blog.articles -%}
+            {%- if a.id != article.id and lat_count < 10 -%}
+              {%- assign idkey = a.id | prepend: ',' | append: ',' -%}
+              {%- unless rel_shown contains idkey -%}
+                {%- capture lat_src %}{% render 'article-hero-src', article: a, width: 320 %}{% endcapture -%}
+                {%- assign lat_src = lat_src | strip -%}
+                <a href="{{ a.url }}" class="an-latest-card">
+                  {%- if lat_src != blank -%}<img class="an-latest-img" src="{{ lat_src }}" alt="{{ a.title | escape }}" loading="lazy">{%- else -%}<div class="an-latest-img"></div>{%- endif -%}
+                  <div class="an-latest-body"><h4>{{ a.title }}</h4><div class="an-related-date">{% render 'article-datetime', article: a %}</div></div>
+                </a>
+                {%- assign lat_count = lat_count | plus: 1 -%}
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- unless article.tags.size == 0 -%}
+    <div class="an-footer-tags"><span class="an-footer-tags-label">Tags:</span>{%- for tag in article.tags -%}{%- unless tag contains 'collection:' -%}<a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="an-footer-tag">{{ tag }}</a>{%- endunless -%}{%- endfor -%}</div>
+  {%- endunless -%}
+
+  {%- if blog.previous_article or blog.next_article -%}
+    <div class="an-prevnext">
+      {%- if blog.previous_article -%}<a href="{{ blog.previous_article }}" class="an-prevnext-link"><span class="an-prevnext-label">&larr; Previous</span><span class="an-prevnext-title">{{ blog.previous_article.title }}</span></a>{%- endif -%}
+      {%- if blog.next_article -%}<a href="{{ blog.next_article }}" class="an-prevnext-link an-prevnext-next"><span class="an-prevnext-label">Next &rarr;</span><span class="an-prevnext-title">{{ blog.next_article.title }}</span></a>{%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="an-back"><a href="{{ blog.url }}">&larr; Back to {{ blog.title }}</a></div>
+</div>
+{% render 'article-datetime-script' %}
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){var a=document.querySelector('.an-body article');if(!a)return;var c=a.querySelectorAll('div[style],section[style],div[class]');for(var i=c.length-1;i>=0;i--){var e=c[i],t=e.textContent||'';if(e.querySelector('a[href*="/collections/"]')&&((t.indexOf('Shop')>-1&&t.indexOf('Collection')>-1)||(t.indexOf('Discover')>-1&&t.indexOf('Merchandise')>-1)))e.remove();}});
+</script>
+
+<script>
+(function(){var f=document.getElementById('anProgressFill');var a=document.querySelector('.article-news');if(!f||!a)return;function upd(){var h=a.offsetHeight-window.innerHeight;var passed=-a.getBoundingClientRect().top;var p=h>0?passed/h:0;if(p<0){p=0;}if(p>1){p=1;}f.style.width=(p*100)+'%';}window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();})();
+</script>
