@@ -1,6 +1,7 @@
 {
   "store": "https://www.aviationshop.com",
-  "note": "Live navigation on the store always wins. These URLs are starting points and fallbacks, not a fixed daily route.",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Cursor-Store-Wander",
+  "note": "Live navigation on the store always wins. These URLs are starting points and fallbacks, not a fixed daily route. Always include Cursor-Store-Wander in the User-Agent.",
   "search_queries": [
     "Boeing 737",
     "Airbus A320",

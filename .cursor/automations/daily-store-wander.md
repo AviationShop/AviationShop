@@ -69,9 +69,9 @@ Bu koşu bir geliştiricinin kendi makinesindeyse (Cursor Desktop veya `agent -p
 
 ## Sert kurallar
 
-- Gerçek tarayıcı kullan. curl, fetch ve headless Playwright Cloudflare Turnstile’da kalır; checkbox kendiliğinden geçmez.
-- Challenge görünürse: sayfayı yenile, checkbox’a tıkla, 30–45 sn bekle. Geçerse devam et.
-- 2 dakikadan fazla “Performing security verification” / Turnstile’da kalırsan **dur**. Bunu “site müşterilere kapalı” diye raporlama — agent IP’si engellenmiş olabilir. Raporda yaz: “Cloudflare agent’ı kesti; vitrin kontrolü yapılamadı.” GitHub issue açma.
+- Gerçek tarayıcı veya curl kullan. Her istekte User-Agent içinde **`Cursor-Store-Wander`** olsun. Cloudflare WAF skip kuralı (Allow Cursor daily store wander) bunu geçer.
+- Chrome/computer-use: User-Agent’ı `Mozilla/5.0 ... Cursor-Store-Wander ...` yap. Yoksa AWS IP’si “Big-cloud datacenter challenge” yer.
+- Challenge hâlâ görünürse: UA’yı kontrol et, 30–45 sn bekle. 2 dakikadan fazla takılırsan dur; “site down” deme. GitHub issue açma.
 - Checkout yok, ödeme yok, sipariş yok.
 - My Account’a giriş yok.
 - Live chat’e yazma; sayfayı kapatıyorsa kapat.
