@@ -1,14 +1,35 @@
-# Bot Defense — günlük gözetim raporu
+# Bot Defense — günlük gözetim (Cursor, günde 1 kez)
 
-aviationshop.com Cloudflare bot savunmasının **gözetim** görevi.
+Grok Bot’taki günlük gözetimin Cursor Cloud karşılığı. **Günde bir kez** çalışır.
 
-Sweep’i sen koşmazsın. `botdefense-worker` her gün **09:06 İstanbul**’da Cloudflare’de zaten koşuyor ve WAF kurallarını güncelliyor. Senin işin: arşivi okumak, karşılaştırmak, Onur’a yazmak.
+Savunmayı sen kurmazsın. Cloudflare Worker zaten her gün **09:06**’da kuralı günceller. Senin işin 09:25’te arşivi okuyup Onur’a yazmak.
 
-## Senin Mac’in değil — Cursor Cloud Automation
+Bu `.md` dosyası saati **kendisi kurmaz**. Saat, bir kez [cursor.com/automations](https://cursor.com/automations) içinde **Save + Activate** edilince işler.
 
-Bu görev Mac mini’deki Cowork görevinin yerini alır. Mac’ten `api.cloudflare.com` / `*.workers.dev` kapalıydı; Cursor Cloud Agent buradan Worker’a ulaşabiliyor.
+## Plan (günde 1)
 
-**Kurulum (bir kez):** [cursor.com/automations](https://cursor.com/automations) → New automation:
+| | |
+| --- | --- |
+| Ne | Gözetim (rapor). Sweep değil. |
+| Ne sıklıkla | **Günde 1** — her gün 09:25 Europe/Istanbul |
+| Nerede | Yeni bir Cursor Cloud agent sohbeti (bu sohbetin devamı değil) |
+| E-posta | Yok |
+| Arşiv | Dropbox `/@ Claude/STORE_SYSTEMS/Bot Defense/reports/YYYY-MM-DD.md` (yalnız yazılacak bir şey varsa) |
+| Sakin gün | Sohbete yazma |
+
+## Bir kez kur (Onur)
+
+**A — Cursor Desktop (en kolay)**
+
+Chat’e yapıştır, kaydet, **Activate** et:
+
+```
+/automate her gün 09:25 Europe/Istanbul'da bot defense günlük gözetimini çalıştır. Prompt: .cursor/automations/bot-defense-daily.md. E-posta yok. PR yok. Cloudflare kuralına dokunma.
+```
+
+**B — Web**
+
+[cursor.com/automations](https://cursor.com/automations) → New automation:
 
 | Ayar | Değer |
 | --- | --- |
@@ -16,16 +37,14 @@ Bu görev Mac mini’deki Cowork görevinin yerini alır. Mac’ten `api.cloudfl
 | Repository | `AviationShop/AviationShop` |
 | Computer use | Kapalı |
 | Pull requests | Kapalı |
-| Slack / e-posta | Kapalı — rapor bu agent sohbetine yazılır |
+| Slack / e-posta | Kapalı — rapor o günkü agent sohbetine yazılır |
 
-Ortam secret’ı (zorunlu):
+Ortam secret’ı (zorunlu): `WORKER_SECRET`
 
-- `WORKER_SECRET` — Worker HTTP uçlarını koruyan bearer (Mac’te `.worker_secret` veya Cloudflare Worker secret deposu)
-
-Aşağıdaki metni automation prompt’una yapıştır:
+Prompt:
 
 ```
-Bot savunması günlük gözetimi.
+Bot defense günlük gözetimi. Günde 1 kez.
 
 Follow `.cursor/automations/bot-defense-daily.md` exactly.
 Run `python3 scripts/botdefense/fetch-last.py` to read today's archive.
