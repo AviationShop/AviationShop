@@ -1,30 +1,38 @@
 # Secrets and auth gates
 
-`CLOUDFLARE_API_TOKEN` Workers/D1/KV **admin** token’ıdır (secret **adlarını** listeler, D1 yazar, KV’ye görsel koyar). Worker HTTP Bearer (`AUTH_TOKEN` / `WORKER_SECRET`) **ayrı** bir wrangler secret’tır; değeri API’den okunmaz.
+İki katman. Karıştırma.
 
-2026-09-01 test: CF token’ı `Authorization: Bearer` olarak `/feeds`, `/persist-bytes`, `/dedup-check`’e gönderince **401**. Aynı token ile `wrangler secret list` → `AUTH_TOKEN` adı görünür; KV PUT + D1 INSERT canlı yayında çalıştı.
+**Katman A — Worker wrangler secrets (zaten duruyor, 2026-09-01 CF API `.../secrets` listesi).** Değerler write-only; API/wrangler okumaz. Worker bunları **kendi içinde** Storrito/Meta’ya giderken kullanır.
+
+| Worker | Secret adları (değer yok) |
+| --- | --- |
+| `storrito-story-poster` | `POSTER_SECRET`, `STORRITO_TOKEN` (`/health` → `configured:true`) |
+| `soft-snow-c1c2` | `WORKER_SECRET`, `META_TOKEN` |
+| `facebook-page-poster` | `WORKER_SECRET`, `FB_PAGE_TOKEN` |
+| `aviation-news-ledger` | `AUTH_TOKEN` |
+| `gemini-image-worker` | `WORKER_SECRET`, `GEMINI_API_KEY`, … |
+| `news-feed-proxy` | `WORKER_SECRET` |
+
+`STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` **Cursor env’e kopyalanmaz.** Worker zaten kullanıyor.
+
+**Katman B — HTTP kapısı.** Public `workers.dev` çağrısı önce kapıyı ister. Kod:
+
+- Storrito: `x-poster-secret === env.POSTER_SECRET` değilse 401 (`STORRITO_TOKEN`’a hiç dokunulmaz)
+- IG/FB: `Authorization: Bearer ${env.WORKER_SECRET}` değilse 401 (`META_TOKEN` / `FB_PAGE_TOKEN` kullanılmaz)
+- Ledger: `Bearer ${env.AUTH_TOKEN}`
+
+Cloud Agent worker’ın `env`’ine giremez. Kapı değerini header’da göstermek zorunda. `CLOUDFLARE_API_TOKEN` bu kapı **değil** (aynı uçlar 401).
+
+Cursor env’e kopyalanacak olan **yalnız kapı** (Mac Mini’deki aynı string; rotate etme):
+
+| Cursor env | Worker’daki ad |
+| --- | --- |
+| `WORKER_AUTH_TOKEN` | `AUTH_TOKEN` / `WORKER_SECRET` (paylaşılan Bearer) |
+| `POSTER_SECRET` | `storrito-story-poster` `POSTER_SECRET` |
 
 ## Env (Cursor Cloud Environment)
 
-Zorunlu (publisher):
-
-| Name | Role |
-| --- | --- |
-| `SHOPIFY_FLAG_STORE` | `$SHOPIFY_FLAG_STORE` |
-| `SHOPIFY_APP_CLIENT_ID` | Admin client credentials |
-| `SHOPIFY_APP_CLIENT_SECRET` | Admin client credentials |
-| `WORKER_AUTH_TOKEN` | Shared Bearer. Worker tarafında `WORKER_SECRET` (gemini-image-worker, news-feed-proxy) = `AUTH_TOKEN` (ledger, image-pipeline, article-writer) |
-
-İsteğe bağlı (distributor — sosyal POST):
-
-| Name | Role |
-| --- | --- |
-| `POSTER_SECRET` | Storrito `x-poster-secret` (`/schedule`). Worker içindeki `STORRITO_TOKEN` env’e gerekmez. |
-| `WORKER_AUTH_TOKEN` | IG feed `soft-snow-c1c2` + Facebook poster Bearer (`WORKER_SECRET`) |
-
-`CLOUDFLARE_API_TOKEN` bu header’ların yerine geçmez (401).
-
-Tema token (`SHOPIFY_CLI_THEME_TOKEN`) haber yayını için gerekmez.
+Shopify + `WORKER_AUTH_TOKEN` + `POSTER_SECRET` yukarıdaki kapı tablosunda. `CLOUDFLARE_API_TOKEN` zaten env’de (D1/KV admin). Tema token haber yayını için gerekmez.
 
 ## Smoke (her koşunun başı)
 
@@ -74,4 +82,4 @@ Kaynak gerçek: `POST /persist-bytes` (Bearer) → yanıt `url` birebir kopya.
 
 ## Rotate vs copy
 
-Token yoksa: Mac Mini skill’den kopyala **veya** `wrangler secret put` ile döndür. Döndürmek Mac Mini’yi anında kırar — önce Mini cron’unu kapat.
+Kapı string’ini Mac Mini’den Cursor env’e **kopyala**. Worker secret’ı `wrangler secret put` ile döndürme — Mini’yi kırar.
