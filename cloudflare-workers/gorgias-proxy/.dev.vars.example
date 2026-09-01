@@ -1,0 +1,5 @@
+# Local only. Copy to .dev.vars (gitignored). Never commit real values.
+WORKER_SECRET=
+GORGIAS_API_KEY=
+GORGIAS_EMAIL=
+GORGIAS_DOMAIN=https://aviation-shop.gorgias.com/api

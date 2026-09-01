@@ -1,0 +1,9 @@
+{
+  "name": "gorgias-proxy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "deploy": "echo 'Do not deploy from CI without Onur approval — production Worker is already live.' && exit 1"
+  }
+}
