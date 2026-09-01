@@ -4,7 +4,7 @@ Hedef: `TARGET_PUBLISHED=3`. Aday tavanı 25, 6’lık bloklar. Havuz ≥12 → 
 
 ## Step 0 — havuz + runlog
 
-`GET /undistributed?account=piloteyes737&limit=50` (Bearer). Shopify `publisher_runlog` FAZ A.
+`GET /undistributed?account=piloteyes737&limit=50` (Mini skill All Worker Auth Bearer). Shopify `publisher_runlog` FAZ A.
 
 Blog GID `gid://shopify/Blog/61149831`. Tema health (eksikse LOUD ama devam): `templates/blog.json`, `templates/article.json`, `sections/blog-news-portal.liquid`.
 

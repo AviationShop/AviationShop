@@ -4,7 +4,7 @@ Her slotta bu dosyayı **önce** oku. Alt dosyalar launcher’ı ezmez — çeli
 
 ## Bu koşunun işi
 
-1. Secret + MCP smoke (`secrets.md`, `architecture.md`)
+1. Secret smoke — **Grok Mini yolu:** Dropbox Mini skill oku, curl header’ı kullan (`secrets.md`). Cursor env’e sosyal secret koyma.
 2. Publisher pass — hedef `TARGET_PUBLISHED=3` (owner 4 demedikçe)
 3. Distributor: overlay Python + persist worker + sosyal **worker POST** (direkt Storrito/Graph yok)
 4. Türkçe owner raporu (Onur Evitan)
@@ -21,8 +21,8 @@ PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
 - Askerî: koşumda max 1, günde max 2. Savaş/ölü-yaralı yok.
 - urllib/requests → CF 1010. `curl` + browser UA.
 - Mac Mini publisher ile paralel çalışma yok.
-- **IG Story:** yalnız `storrito-story-poster` `POST /schedule` + `x-poster-secret`. `storrito.com` yok. Mini Part 2 Bearer kopyalanmaz.
-- **Secret Drive’da yok.** Drive/Dropbox token taraması yapma. Ad listesi = Cloudflare wrangler secrets.
+- **IG Story:** yalnız `storrito-story-poster` `POST /schedule` + `x-poster-secret` = Mini skill **All Worker Auth** (Bearer kelimesi yok). `storrito.com` yok. Mini Part 2 Storrito Bearer kopyalanmaz.
+- **Kapı = Grok Mini skill.** Dropbox `distributor-SKILL.md` Step 1. Cursor env’e `POSTER_SECRET` / `WORKER_AUTH_TOKEN` koyma, owner’a yapıştır deme. Drive’da secret dosyası yok (boş tarama doğru). Dropbox skill **okumak** Grok yoludur, secret-dosyası avı değil.
 
 ## Image chain (kalıcı — Gemini-first’ü ezer)
 

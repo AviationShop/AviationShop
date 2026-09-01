@@ -30,7 +30,7 @@ workers (post + persist)
 
 Storrito.com ve Meta Graph **orkestrasyondan çağrılmaz.** `STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` yalnız worker wrangler secret.
 
-**IG Story tek kapı (2026-09-01 20:30 Europe/Istanbul’dan):** `storrito-story-poster` `POST /schedule` header `x-poster-secret`. Mini Part 2 doğrudan Storrito Bearer **eski** — kopyalama. Secret Drive’da yok; Cloudflare `.../secrets` yalnız **ad** listeler.
+**IG Story tek kapı:** `storrito-story-poster` `POST /schedule` + `x-poster-secret`. Mini Part 2 doğrudan `storrito.com` **eski** — kopyalama.
 
 ## Orkestrasyon (worker değil)
 
@@ -39,6 +39,6 @@ Storrito.com ve Meta Graph **orkestrasyondan çağrılmaz.** `STORRITO_TOKEN` / 
 | Overlay | `overlay_gen.py` (Pillow) |
 | Makale | Shopify Admin GraphQL |
 | Görsel üretim | Cursor GenerateImage veya Higgsfield MCP |
-| Kapı header | Cursor env `POSTER_SECRET` / `WORKER_AUTH_TOKEN`. Drive arama yok. Wrangler secret **değeri** okunmaz. |
+| HTTP kapısı | **Grok Mini yolu:** Dropbox Mini skill curl (All Worker Auth). Cursor env’e sosyal secret koyma. Drive’da secret dosyası yok. Wrangler değer okunmaz. Ayrıntı: `secrets.md`. |
 
 KV PUT (`persist_kv.py`) yalnız `/persist-bytes` 401 ise Cloud yedek — asıl yol worker persist.

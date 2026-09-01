@@ -9,7 +9,7 @@ Eski kural (Gemini-first, 2026-08-31 doküman) **geçersiz**. Bu dosya ezer.
 | 1 | Cursor `GenerateImage` — **Grok Image 2** | varsayılan. 16:9, 1:1, 9:16 ayrı çağrı. Higgsfield gerekmez. |
 | 2 | Higgsfield MCP `grok_image_2_0` (yedek) | katman 1 fail veya Higgsfield özellikle istenirse. 3 aspect paralel. |
 | 3 | Higgsfield `gpt_image_2` / `nano_banana_pro` | katman 2 model hatası (401 değilse) |
-| 4 | `POST .../generate-async` Gemini `gemini-3-pro-image-preview` persist:true | MCP ölü **ve** `WORKER_AUTH_TOKEN` var |
+| 4 | `POST .../generate-async` Gemini `gemini-3-pro-image-preview` persist:true | MCP ölü **ve** Mini skill worker Bearer var |
 
 Higgsfield 401 → `higgsfield_unavailable: yes` LOUD, **hikâyeyi düşürme** — katman 1 zaten Grok. Bağlantı: `higgsfield.md`.
 

@@ -6,7 +6,7 @@ Overlay + JPEG persist **her zaman** (raw 1:1 ve 9:16 var, age ≤96h). Kapı yo
 
 ## Step 0
 
-`GET /undistributed?account=piloteyes737&limit=20` (ledger Bearer). DESC → **oldest-first** `published_at`. Cache-bust: `&nocache=1&_ts=`.
+`GET /undistributed?account=piloteyes737&limit=20` (Mini skill All Worker Auth Bearer — Grok yolu). DESC → **oldest-first** `published_at`. Cache-bust: `&nocache=1&_ts=`.
 
 `source==facts` / badge `AVIATION 101` → sosyal yok. `raw_1_1` veya `raw_9_16` boş / `age_h > 96` → atla.
 
@@ -26,9 +26,9 @@ JPEG → `POST gemini-image-worker /persist-bytes`. 401 ise `persist_kv.py`. Let
 
 | Kanal | Worker | Not |
 | --- | --- | --- |
-| IG Story | `storrito-story-poster` `POST /schedule` header `x-poster-secret` | **Tek kapı.** Body: `instagramUsername: aviatorszone` (lowercase), `storyPostUuid` uuid5(key), `storyOverlayUrl`, `articleUrl`, `sourcesLine`. `storrito.com` yok. Mini Part 2 Bearer kopyalanmaz. |
-| IG Feed | `soft-snow-c1c2` `POST /feed` Bearer | `account: aviatorszone`, caption ≥500 |
-| Facebook | `facebook-page-poster` `POST /photo` Bearer | sayfa Piloteyes737; `post_id` `^1537617809874772_\d+$`; `GET /graph?id=` `is_published` |
+| IG Story | `storrito-story-poster` `POST /schedule` header `x-poster-secret` | **Tek kapı.** Header değeri = Mini skill All Worker Auth (**Bearer kelimesi yok**). Body: `instagramUsername: aviatorszone` (lowercase), `storyPostUuid` uuid5(key), `storyOverlayUrl`, `articleUrl`, `sourcesLine`. `storrito.com` yok. Mini Part 2 Storrito Bearer kopyalanmaz. |
+| IG Feed | `soft-snow-c1c2` `POST /feed` Bearer | Mini skill All Worker Auth. `account: aviatorszone`, caption ≥500 |
+| Facebook | `facebook-page-poster` `POST /photo` Bearer | Mini skill All Worker Auth. sayfa Piloteyes737; `post_id` `^1537617809874772_\d+$`; `GET /graph?id=` `is_published` |
 | Twitter | sentinel | `external_id: twitter-disabled-blocked`. IG/FB fail iken 4/4 sayılmaz. |
 
 Pre-flight: `GET /distributor-log?story_key=&channel=&account=piloteyes737`. DONE=4 skip. 1–3 yalnız eksik.
