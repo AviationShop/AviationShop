@@ -26,7 +26,7 @@ JPEG → `POST gemini-image-worker /persist-bytes`. 401 ise `persist_kv.py`. Let
 
 | Kanal | Worker | Not |
 | --- | --- | --- |
-| IG Story | `storrito-story-poster` `POST /schedule` `x-poster-secret` | body: `instagramUsername: aviatorszone` (lowercase), `storyPostUuid` uuid5(key), `storyOverlayUrl`, `articleUrl`, `sourcesLine`. **Direkt storrito.com yok.** |
+| IG Story | `storrito-story-poster` `POST /schedule` header `x-poster-secret` | **Tek kapı.** Body: `instagramUsername: aviatorszone` (lowercase), `storyPostUuid` uuid5(key), `storyOverlayUrl`, `articleUrl`, `sourcesLine`. `storrito.com` yok. Mini Part 2 Bearer kopyalanmaz. |
 | IG Feed | `soft-snow-c1c2` `POST /feed` Bearer | `account: aviatorszone`, caption ≥500 |
 | Facebook | `facebook-page-poster` `POST /photo` Bearer | sayfa Piloteyes737; `post_id` `^1537617809874772_\d+$`; `GET /graph?id=` `is_published` |
 | Twitter | sentinel | `external_id: twitter-disabled-blocked`. IG/FB fail iken 4/4 sayılmaz. |

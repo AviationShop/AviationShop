@@ -21,6 +21,8 @@ PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
 - Askerî: koşumda max 1, günde max 2. Savaş/ölü-yaralı yok.
 - urllib/requests → CF 1010. `curl` + browser UA.
 - Mac Mini publisher ile paralel çalışma yok.
+- **IG Story:** yalnız `storrito-story-poster` `POST /schedule` + `x-poster-secret`. `storrito.com` yok. Mini Part 2 Bearer kopyalanmaz.
+- **Secret Drive’da yok.** Drive/Dropbox token taraması yapma. Ad listesi = Cloudflare wrangler secrets.
 
 ## Image chain (kalıcı — Gemini-first’ü ezer)
 

@@ -28,7 +28,9 @@ workers (post + persist)
 | Ledger | `aviation-news-ledger` | `/undistributed`, `/ledger-add`, `/distributor-log` |
 | Feed keşif | `news-feed-proxy` | `GET /feeds` Bearer |
 
-Storrito.com ve Meta Graph **orkestrasyondan çağrılmaz.** `STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` worker `env`’de. Direkt `storrito.com/api/...` Mini skill (2026-08-19) **eski** — `storrito-story-poster` 2026-08-31.
+Storrito.com ve Meta Graph **orkestrasyondan çağrılmaz.** `STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` yalnız worker wrangler secret.
+
+**IG Story tek kapı (2026-09-01 20:30 Europe/Istanbul’dan):** `storrito-story-poster` `POST /schedule` header `x-poster-secret`. Mini Part 2 doğrudan Storrito Bearer **eski** — kopyalama. Secret Drive’da yok; Cloudflare `.../secrets` yalnız **ad** listeler.
 
 ## Orkestrasyon (worker değil)
 
@@ -37,6 +39,6 @@ Storrito.com ve Meta Graph **orkestrasyondan çağrılmaz.** `STORRITO_TOKEN` / 
 | Overlay | `overlay_gen.py` (Pillow) |
 | Makale | Shopify Admin GraphQL |
 | Görsel üretim | Cursor GenerateImage veya Higgsfield MCP |
-| Kapı header | Dropbox Mini skill’den oku; worker secret **değeri** API’den gelmez |
+| Kapı header | Cursor env `POSTER_SECRET` / `WORKER_AUTH_TOKEN`. Drive arama yok. Wrangler secret **değeri** okunmaz. |
 
 KV PUT (`persist_kv.py`) yalnız `/persist-bytes` 401 ise Cloud yedek — asıl yol worker persist.

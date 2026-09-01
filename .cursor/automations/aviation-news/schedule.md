@@ -24,6 +24,7 @@ Follow `.cursor/automations/aviation-news/SKILL.md` then architecture.md.
 You orchestrate. Workers post: storrito-story-poster /schedule, soft-snow-c1c2 /feed, facebook-page-poster /photo.
 Overlay is overlay_gen.py. Persist via gemini-image-worker /persist-bytes. Shopify Admin and Higgsfield are not workers.
 Do not call storrito.com or Meta Graph from the agent.
+Do not search Drive or Dropbox for secrets. Story gate is x-poster-secret on storrito-story-poster /schedule; confirm secret names via Cloudflare wrangler secrets.
 
 TARGET_PUBLISHED = 3 unless the owner already confirmed 4.
 Grok Image 2 via Cursor GenerateImage first; Higgsfield grok_image_2_0 backup if MCP is logged in; Gemini /generate-async last resort.
@@ -43,7 +44,7 @@ Store: $SHOPIFY_FLAG_STORE / aviationshop.com News blog.
 
 ## Enable etmeden önce
 
-1. Env’de `WORKER_AUTH_TOKEN` + `POSTER_SECRET` var (sosyal POST için)
+1. Env’de `WORKER_AUTH_TOKEN` + `POSTER_SECRET` var (sosyal POST için). Story 2026-09-01 20:30 TR’den worker `/schedule`. Drive’da secret yok.
 2. Higgsfield isteğe bağlı yedek — Cloud MCP menüsünden login (`higgsfield.md`)
 3. Mac Mini publisher/distributor/watchdog cron **kapalı**
 4. Bir slot manuel (bu skill ile) yeşil

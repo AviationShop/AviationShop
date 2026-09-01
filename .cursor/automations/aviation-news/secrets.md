@@ -2,28 +2,40 @@
 
 İki katman. Karıştırma.
 
-**Katman A — Worker wrangler secrets (zaten duruyor, 2026-09-01 CF API `.../secrets` listesi).** Değerler write-only; API/wrangler okumaz. Worker bunları **kendi içinde** Storrito/Meta’ya giderken kullanır.
+**Drive / Dropbox’ta secret arama.** Secret Drive’a konmaz. Boş Drive taraması doğru sonuçtur, hata değil. Mini Part 2’deki doğrudan Storrito Bearer **eski yol** — kopyalama. `STORRITO_TOKEN` yalnız Worker wrangler secret.
+
+## Katman A — Worker wrangler secrets (ad listesi, değer yok)
+
+Doğrulama: Cloudflare API `.../workers/scripts/<name>/secrets` veya `wrangler secret list`. Değerler write-only; API/wrangler okumaz. Worker bunları **kendi içinde** Storrito/Meta’ya giderken kullanır.
+
+2026-09-01 `storrito-story-poster` listesi: `POSTER_SECRET`, `STORRITO_TOKEN`. `/health` → `{ok:true, configured:true}`.
 
 | Worker | Secret adları (değer yok) |
 | --- | --- |
-| `storrito-story-poster` | `POSTER_SECRET`, `STORRITO_TOKEN` (`/health` → `configured:true`) |
+| `storrito-story-poster` | `POSTER_SECRET`, `STORRITO_TOKEN` |
 | `soft-snow-c1c2` | `WORKER_SECRET`, `META_TOKEN` |
 | `facebook-page-poster` | `WORKER_SECRET`, `FB_PAGE_TOKEN` |
 | `aviation-news-ledger` | `AUTH_TOKEN` |
 | `gemini-image-worker` | `WORKER_SECRET`, `GEMINI_API_KEY`, … |
 | `news-feed-proxy` | `WORKER_SECRET` |
 
-`STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` **orkestrasyona kopyalanmaz.** Worker zaten kullanıyor. Sen worker’a HTTP kapısını gösterirsin; post’u worker atar.
+`STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` **orkestrasyona kopyalanmaz.** Sen worker’a HTTP kapısını gösterirsin; post’u worker atar.
 
-**Katman B — HTTP kapısı** (orkestrasyon → worker). Public `workers.dev`:
+## Katman B — HTTP kapısı (orkestrasyon → worker)
 
-- Story: `x-poster-secret === env.POSTER_SECRET` (`storrito-story-poster`). Ledger AUTH ile **aynı değil** (AUTH → 401). Mini Dropbox skill hâlâ direkt Storrito.com yazıyor — **eski**; Cloud Story yalnız bu worker.
-- IG Feed / FB: `Authorization: Bearer ${env.WORKER_SECRET}`
-- Ledger / persist: `Bearer ${env.AUTH_TOKEN}` / `WORKER_SECRET`
+Public `workers.dev`. **Repoya token yazma.** `CLOUDFLARE_API_TOKEN` kapı değil (Workers/D1/KV admin).
 
-Kapı Dropbox Mini skill’de (ledger/feed/FB Bearer). Story `POSTER_SECRET` o dosyada yoksa env veya worker deploy notundan. **Repoya token yazma.** `CLOUDFLARE_API_TOKEN` kapı değil.
+| İş | Kapı | Worker |
+| --- | --- | --- |
+| IG Story | header `x-poster-secret` = Cursor env `POSTER_SECRET` | `storrito-story-poster` `POST /schedule` |
+| IG Feed / FB | `Authorization: Bearer ${WORKER_AUTH_TOKEN}` | `soft-snow-c1c2` / `facebook-page-poster` |
+| Ledger / persist | Bearer `AUTH_TOKEN` / `WORKER_SECRET` | ledger / gemini-image-worker |
 
-Cursor env’e kopyalamak **zorunlu değil** (Dropbox skill okunursa). Yedek olarak env’e koymak istersen Mini’deki aynı string; rotate etme:
+Story kapısı ledger AUTH ile **aynı değil** (AUTH → 401).
+
+**Tek Story kapısı (2026-09-01 20:30 Europe/Istanbul’dan itibaren):** `https://storrito-story-poster.oevitan.workers.dev/schedule` + `x-poster-secret`. Orkestrasyon `storrito.com` çağırmaz. Mini Part 2 `Authorization: Bearer … storrito.com/api/v1/schedule-instagram-story` kopyalanmaz.
+
+Wrangler secret list **değer vermez**. Canlı POST için `POSTER_SECRET` Cursor Cloud Environment’e owner tarafından konur.
 
 | Cursor env | Worker’daki ad |
 | --- | --- |
@@ -32,7 +44,7 @@ Cursor env’e kopyalamak **zorunlu değil** (Dropbox skill okunursa). Yedek ola
 
 ## Env (Cursor Cloud Environment)
 
-Shopify + `WORKER_AUTH_TOKEN` + `POSTER_SECRET` yukarıdaki kapı tablosunda. `CLOUDFLARE_API_TOKEN` zaten env’de (D1/KV admin). Tema token haber yayını için gerekmez.
+Shopify + `WORKER_AUTH_TOKEN` + `POSTER_SECRET`. `CLOUDFLARE_API_TOKEN` zaten env’de (D1/KV admin). Tema token haber yayını için gerekmez.
 
 ## Smoke (her koşunun başı)
 
@@ -41,10 +53,12 @@ Browser User-Agent zorunlu. urllib/requests Cloudflare 1010 yiyebilir → `curl`
 ```bash
 UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
 
-# public
+# public — auth kanıtı değil
 curl -sS -A "$UA" https://aviation-news-ledger.oevitan.workers.dev/health
 curl -sS -A "$UA" https://news-feed-proxy.oevitan.workers.dev/health
 curl -sS -A "$UA" https://gemini-image-worker.oevitan.workers.dev/health
+curl -sS -A "$UA" https://storrito-story-poster.oevitan.workers.dev/health
+# beklenen: {"ok":true,"configured":true}
 
 # authenticated — 401 ise DUR, yayınlama
 curl -sS -A "$UA" -H "Authorization: Bearer $WORKER_AUTH_TOKEN" \
@@ -53,7 +67,7 @@ curl -sS -A "$UA" -H "Authorization: Bearer $WORKER_AUTH_TOKEN" \
   'https://aviation-news-ledger.oevitan.workers.dev/undistributed?account=piloteyes737&limit=5'
 ```
 
-`/health` public’tir; auth kanıtı **değildir**.
+Story smoke: `POST /schedule` **yalnız** `x-poster-secret` ile. Secret yok / yanlış → `{error:unauthorized}`. `storrito.com` deneme.
 
 ## Shopify Admin
 
@@ -82,4 +96,4 @@ Kaynak gerçek: `POST /persist-bytes` (Bearer) → yanıt `url` birebir kopya.
 
 ## Rotate vs copy
 
-Kapı string’ini Mac Mini’den Cursor env’e **kopyala**. Worker secret’ı `wrangler secret put` ile döndürme — Mini’yi kırar.
+Worker secret’ı `wrangler secret put` ile döndürme — Mini’yi kırar. Drive’dan / Mini Part 2’den Storrito Bearer **kopyalama**. Story kapısı = Cursor env `POSTER_SECRET` → header `x-poster-secret`.

@@ -24,7 +24,7 @@ Cron (Istanbul): `0 0,4,8,12,16,20 * * *`
 
 1. `SKILL.md` — launcher, hard rules, exit paths
 2. `architecture.md` — orkestrasyon vs worker (post worker atar)
-3. `secrets.md` — env / MCP kapıları
+3. `secrets.md` — wrangler secret **adları** + HTTP kapısı. Drive’da secret yok.
 4. `publisher.md` — aday → yaz → görsel → Shopify → D1
 5. `image-chain.md` — Grok Image 2 (Cursor) first; Higgsfield yedek
 6. `higgsfield.md` — Cloud MCP OAuth (env secret değil)
