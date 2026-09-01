@@ -168,15 +168,17 @@
     {%- if tag contains 'collection:related:' -%}
       {%- assign rec_handle = tag | remove: 'collection:related:' | strip | downcase -%}
       {%- assign rec_ok = false -%}
-      {%- unless rec_handle contains 'latam' -%}
-        {%- if rec_handle contains '-enthusiasts' or rec_handle contains '-airlines' or rec_handle contains '-airways' -%}
-          {%- assign rec_ok = true -%}
-        {%- endif -%}
-        {%- unless rec_ok -%}
+      {%- if rec_handle contains 'latam' -%}
+        {%- assign rec_ok = false -%}
+      {%- else -%}
+        {%- if rec_handle contains '-enthusiasts' -%}{%- assign rec_ok = true -%}{%- endif -%}
+        {%- if rec_handle contains '-airlines' -%}{%- assign rec_ok = true -%}{%- endif -%}
+        {%- if rec_handle contains '-airways' -%}{%- assign rec_ok = true -%}{%- endif -%}
+        {%- if rec_ok == false -%}
           {%- for tok in ac_toks -%}{%- if rec_handle contains tok -%}{%- assign rec_ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
-        {%- endunless -%}
-      {%- endunless -%}
-      {%- if rec_ok -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- if rec_ok == true -%}
         {%- assign rec_needle = ',' | append: rec_handle | append: ',' -%}
         {%- assign rec_hay = ',' | append: rec_handles -%}
         {%- unless rec_hay contains rec_needle -%}{%- assign rec_handles = rec_handles | append: rec_handle | append: ',' -%}{%- endunless -%}
@@ -185,21 +187,23 @@
   {%- endfor -%}
   {%- if rec_handles == '' -%}
     {%- for tag in article.tags -%}
-      {%- unless tag contains 'collection:random:' or tag contains 'collection:related:' -%}
-        {%- if tag contains 'collection:' -%}
-          {%- assign rec_handle = tag | split: 'collection:' | last | strip | downcase -%}
+      {%- if tag contains 'collection:random:' -%}
+      {%- elsif tag contains 'collection:related:' -%}
+      {%- elsif tag contains 'collection:' -%}
+        {%- assign rec_handle = tag | split: 'collection:' | last | strip | downcase -%}
+        {%- assign rec_ok = false -%}
+        {%- if rec_handle contains 'latam' -%}
           {%- assign rec_ok = false -%}
-          {%- unless rec_handle contains 'latam' -%}
-            {%- if rec_handle contains '-enthusiasts' or rec_handle contains '-airlines' or rec_handle contains '-airways' -%}
-              {%- assign rec_ok = true -%}
-            {%- endif -%}
-            {%- unless rec_ok -%}
-              {%- for tok in ac_toks -%}{%- if rec_handle contains tok -%}{%- assign rec_ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
-            {%- endunless -%}
-          {%- endunless -%}
-          {%- if rec_ok -%}{%- assign rec_handles = rec_handle | append: ',' -%}{%- break -%}{%- endif -%}
+        {%- else -%}
+          {%- if rec_handle contains '-enthusiasts' -%}{%- assign rec_ok = true -%}{%- endif -%}
+          {%- if rec_handle contains '-airlines' -%}{%- assign rec_ok = true -%}{%- endif -%}
+          {%- if rec_handle contains '-airways' -%}{%- assign rec_ok = true -%}{%- endif -%}
+          {%- if rec_ok == false -%}
+            {%- for tok in ac_toks -%}{%- if rec_handle contains tok -%}{%- assign rec_ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+          {%- endif -%}
         {%- endif -%}
-      {%- endunless -%}
+        {%- if rec_ok == true -%}{%- assign rec_handles = rec_handle | append: ',' -%}{%- break -%}{%- endif -%}
+      {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
   {%- assign recs_rendered = 0 -%}
