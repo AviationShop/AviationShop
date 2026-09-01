@@ -1,0 +1,77 @@
+{
+  "store": "https://www.aviationshop.com",
+  "brand": "Aviation Shop",
+  "tagline": "The world's largest aviation gift store — gifts for pilots, cabin crew and aviation enthusiasts since 2011.",
+  "audience": "pilots, cabin crew, aviation enthusiasts, gift buyers",
+  "language": "en",
+  "tone": [
+    "warm and confident, not corporate",
+    "aviation-literate without jargon overload",
+    "gift-friendly (birthday, graduation, type rating, retirement)",
+    "short sentences, concrete product hooks",
+    "no fake urgency, no spammy ALL CAPS"
+  ],
+  "avoid": [
+    "purple marketing fluff",
+    "generic 'elevate your lifestyle' copy",
+    "emoji spam",
+    "claiming inventory or discounts that are not visible on the live product page",
+    "checkout, login, or admin actions"
+  ],
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Cursor-Store-Wander",
+  "sources": {
+    "bestsellers": "https://www.aviationshop.com/collections/best-selling-products/products.json?limit=12",
+    "catalog_sample": "https://www.aviationshop.com/collections/all/products.json?limit=24",
+    "homepage": "https://www.aviationshop.com/",
+    "tools_hub": "https://www.aviationshop.com/pages/aviation-tools",
+    "about": "https://www.aviationshop.com/pages/about-us"
+  },
+  "utm": {
+    "utm_source": "newsletter",
+    "utm_medium": "email",
+    "utm_campaign_pattern": "aviation-shop-YYYY-MM"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "title": "Opening",
+      "rules": "One brand-led line + one short supporting sentence for this month. No stats strip."
+    },
+    {
+      "id": "featured",
+      "title": "Featured picks",
+      "rules": "3–5 live products with title, price, 1-sentence why, and product URL + UTM."
+    },
+    {
+      "id": "crew_corner",
+      "title": "Crew corner",
+      "rules": "One gift angle for pilots or cabin crew (headset, bag, epaulettes, jacket, etc.)."
+    },
+    {
+      "id": "free_tool",
+      "title": "Free pilot tool",
+      "rules": "Highlight one free Aviation Tools page; link to the tool, not a checkout."
+    },
+    {
+      "id": "cta",
+      "title": "Primary CTA",
+      "rules": "One clear shop CTA (bestsellers or seasonal collection). Secondary optional: tools hub."
+    }
+  ],
+  "seasonal_hooks": {
+    "01": "New year resolutions — training, study, cockpit-ready gifts",
+    "02": "Valentine / appreciation gifts for crew partners",
+    "03": "Spring type-rating & graduation season",
+    "04": "Earth Day / travel season kickoff",
+    "05": "Mother's Day / cabin crew appreciation",
+    "06": "Father's Day / summer flying season",
+    "07": "Peak travel — airport & cabin comfort gifts",
+    "08": "Back-to-training / student pilot gear",
+    "09": "Autumn flying — jackets, bags, desk gifts",
+    "10": "Halloween / Remembrance aviation merch (tasteful)",
+    "11": "Black Friday prep — gift-list starters (no invented discounts)",
+    "12": "Holiday gifts for pilots & aviation families"
+  },
+  "reviewer_email": "oevitan@gmail.com",
+  "output_dir": "reports/newsletters"
+}
