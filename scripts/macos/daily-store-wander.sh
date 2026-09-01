@@ -28,6 +28,7 @@ Use ${REPO_DIR}/.cursor/automations/wander-seeds.json only as starting points.
 Read ${HOME}/.aviationshop-wander-log.md if it exists so you do not repeat products from the last 14 days.
 
 Store: https://www.aviationshop.com
+Every browser/curl request MUST include User-Agent substring Cursor-Store-Wander (Cloudflare skip rule).
 Do not checkout, do not log in, do not open a pull request.
 Write the daily report in Turkish for Onur.
 Also write the same report to ${REPORT}
