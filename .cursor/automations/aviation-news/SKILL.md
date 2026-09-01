@@ -21,7 +21,8 @@ PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
 - Askerî: koşumda max 1, günde max 2. Savaş/ölü-yaralı yok.
 - urllib/requests → CF 1010. `curl` + browser UA.
 - Mac Mini publisher ile paralel çalışma yok.
-- **IG Story:** yalnız `storrito-story-poster` `POST /schedule` + `x-poster-secret` = Mini skill **All Worker Auth** (Bearer kelimesi yok). `storrito.com` yok. Mini Part 2 Storrito Bearer kopyalanmaz.
+- **IG Story:** yalnız `storrito-story-poster` `POST /schedule` + `x-poster-secret` = Mini skill **All Worker Auth** (Bearer kelimesi yok). `storrito.com` yok. Mini Part 2 Storrito Bearer kopyalanmaz. Story görseli = `overlay_gen.py` **story overlay** (raw_9_16 değil). Worker `READ ARTICLE` link sticker + alt `Sources: … | AI Generated Image` basar.
+- **Overlay:** Mini kanonik `overlay_gen.py` (yeniden yazma / sadeleştirme YASAK). Feed 1:1: mavi pill + all-caps başlık alt üçte + `Sources:` + mavi bar `@aviatorszone` | `AviationShop.com | Daily Aviation News`. Story 9:16: AVIATION NEWS pill + all-caps başlık + mavi çizgi + `AviationShop.com | Daily Aviation News`. Raw görsel postlama yok.
 - **Kapı = Grok Mini skill.** Dropbox `distributor-SKILL.md` Step 1. Cursor env’e `POSTER_SECRET` / `WORKER_AUTH_TOKEN` koyma, owner’a yapıştır deme. Drive’da secret dosyası yok (boş tarama doğru). Dropbox skill **okumak** Grok yoludur, secret-dosyası avı değil.
 
 ## Image chain (kalıcı — Gemini-first’ü ezer)
