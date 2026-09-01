@@ -7,6 +7,8 @@ Bu raporda taranan: **5 950 ürün** (`products.json` sayfa 1–119). Aynı ta
 
 User-Agent: `Cursor-Store-Wander`. Checkout / login yok.
 
+GitHub: [#9 hoodie XS](https://github.com/AviationShop/AviationShop/issues/9) · [#10 coaster compare-at](https://github.com/AviationShop/AviationShop/issues/10) · [#12 kılıf 250 tavan](https://github.com/AviationShop/AviationShop/issues/12)
+
 ## Temiz çıkanlar (taranan dilimde)
 
 | Kontrol | Sonuç |
