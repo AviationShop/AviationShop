@@ -6,7 +6,7 @@ Her slotta bu dosyayı **önce** oku. Alt dosyalar launcher’ı ezmez — çeli
 
 1. Secret + MCP smoke (`secrets.md`)
 2. Publisher pass — hedef `TARGET_PUBLISHED=3` (owner 4 demedikçe)
-3. Aynı hikâyeler için distributor pass — Storrito/Meta yoksa **yayın sonrası dur**, raporla
+3. Aynı hikâyeler için distributor pass — overlay+persist her zaman; Storrito/Meta yoksa **sosyal POST yok**, sahte 4/4 yok
 4. Türkçe owner raporu (Onur Evitan)
 
 PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
@@ -24,9 +24,10 @@ PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
 
 ## Image chain (kalıcı — Gemini-first’ü ezer)
 
-1. **Grok Image 2.0** Higgsfield MCP — `grok_image_2_0` — 16:9, 1:1, 9:16
-2. Higgsfield yedek — `gpt_image_2` / `nano_banana_pro`
-3. Gemini worker `/generate-async` — last resort
+1. Cursor **GenerateImage** (Grok Image 2) — 16:9, 1:1, 9:16
+2. Higgsfield MCP yedek — `grok_image_2_0` (bağlıysa). Kurulum: `higgsfield.md`
+3. Higgsfield `gpt_image_2` / `nano_banana_pro`
+4. Gemini worker `/generate-async` — last resort
 
 Ayrıntı: `image-chain.md`.
 

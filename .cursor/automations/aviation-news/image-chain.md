@@ -6,11 +6,14 @@ Eski kural (Gemini-first, 2026-08-31 doküman) **geçersiz**. Bu dosya ezer.
 
 | Katman | Ne | Ne zaman |
 | --- | --- | --- |
-| 1 | Higgsfield `grok_image_2_0` | varsayılan, 3 aspect paralel |
-| 2 | Higgsfield `gpt_image_2` veya `nano_banana_pro` | Grok fail / 401 değilse model hatası |
-| 3 | `POST .../generate-async` Gemini `gemini-3-pro-image-preview` persist:true | Higgsfield MCP ölü **ve** `WORKER_AUTH_TOKEN` var |
+| 1 | Cursor `GenerateImage` — **Grok Image 2** | varsayılan. 16:9, 1:1, 9:16 ayrı çağrı. Higgsfield gerekmez. |
+| 2 | Higgsfield MCP `grok_image_2_0` (yedek) | katman 1 fail veya Higgsfield özellikle istenirse. 3 aspect paralel. |
+| 3 | Higgsfield `gpt_image_2` / `nano_banana_pro` | katman 2 model hatası (401 değilse) |
+| 4 | `POST .../generate-async` Gemini `gemini-3-pro-image-preview` persist:true | MCP ölü **ve** `WORKER_AUTH_TOKEN` var |
 
-Higgsfield 401 → `higgsfield_unavailable: yes` LOUD. Gemini last resort. İkisi de yoksa hikâye düşer (`stopped_at: step3_image_generate`). Sessiz düşürme yok.
+Higgsfield 401 → `higgsfield_unavailable: yes` LOUD, **hikâyeyi düşürme** — katman 1 zaten Grok. Bağlantı: `higgsfield.md`.
+
+Gemini last resort. Grok + persist yoksa hikâye düşer (`stopped_at: step3_image_generate`). Sessiz düşürme yok.
 
 OpenAI worker `/generate-openai-async` **kullanılmaz** (sonsuz PENDING).
 
@@ -34,7 +37,7 @@ Sahne: `scene_idx = sum(key bytes) % 12`. Shot: `(sum // 12) % 11`. Aynı koşum
 
 ## Persist
 
-Higgsfield CDN kalıcı değildir. İndir → JPEG q92 → `POST /persist-bytes` Content-Type `image/jpeg` `--data-binary`. 401 ise `persist_kv.py` (CLOUDFLARE_API_TOKEN → KV IMAGES). Yanıt/doğrulanmış URL birebir. GET 200 + `image/jpeg`.
+Higgsfield CDN ve Cursor artifact PNG kalıcı kaynak değildir. İndir → JPEG q92 → `POST /persist-bytes` Content-Type `image/jpeg` `--data-binary`. 401 ise `persist_kv.py` (CLOUDFLARE_API_TOKEN → KV IMAGES). Yanıt/doğrulanmış URL birebir. GET 200 + `image/jpeg`.
 
 Shopify Files kaynak gerçek değildir.
 

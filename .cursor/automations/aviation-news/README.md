@@ -25,9 +25,10 @@ Cron (Istanbul): `0 0,4,8,12,16,20 * * *`
 1. `SKILL.md` — launcher, hard rules, exit paths
 2. `secrets.md` — env / MCP kapıları (eksikse yayın yok)
 3. `publisher.md` — aday → yaz → görsel → Shopify → D1
-4. `image-chain.md` — Grok-first kalıcı kural
-5. `distributor.md` — overlay + sosyal (secret yoksa dur)
-6. `watchdog.md` — 5 saatlik dead-man (ayrı otomasyon)
+4. `image-chain.md` — Grok Image 2 (Cursor) first; Higgsfield yedek
+5. `higgsfield.md` — Cloud MCP OAuth (env secret değil)
+6. `distributor.md` — overlay + sosyal (poster Bearer yoksa POST yok)
+7. `watchdog.md` — 5 saatlik dead-man (ayrı otomasyon)
 
 ## Cutover
 

@@ -1,6 +1,8 @@
 # Distributor (same pipeline, after publish)
 
-Secret yoksa (`STORRITO_TOKEN` / Meta poster) **dur**. Overlay üretme. Raporda `distributor_skipped: missing_social_secrets`.
+Overlay + JPEG persist **her zaman** (yayınlanan hikâye, raw 1:1 ve 9:16 var, age ≤96h).
+
+Sosyal POST (`STORRITO_TOKEN` / `POSTER_SECRET` / Meta Bearer) yoksa **dur**: Storrito/IG/FB çağırma. Sahte 4/4 yok. Twitter sentinel (`twitter-disabled-blocked`) yalnız X kanalı. Raporda `distributor_partial: missing_social_secrets`. Overlay URL’leri `piloteyes_json.feed_overlay_url` / `story_overlay_url`.
 
 ## Step 0
 
@@ -29,7 +31,7 @@ JPEG persist `/persist-bytes`. Letterbox → exit 3, dosya yok.
 | IG Story | Storrito `aviatorszone` (lowercase) | HTML cover + link sticker makale URL |
 | IG Feed | `soft-snow-c1c2.oevitan.workers.dev/feed` account `aviatorszone` | caption ≥500 |
 | Facebook | `facebook-page-poster.oevitan.workers.dev/photo` | `@piloteyes737`; post_id `PAGEID_digits`; GET `/graph?id=` `is_published` |
-| Twitter | **sentinel** | `external_id: twitter-disabled-blocked` status success — 4/4 için |
+| Twitter | **sentinel** | `external_id: twitter-disabled-blocked` status success. IG/FB fail iken 4/4 sayılmaz. |
 
 Pre-flight: `GET /distributor-log?story_key=&channel=&account=piloteyes737`. DONE=4 skip. 1–3 yalnız eksik.
 

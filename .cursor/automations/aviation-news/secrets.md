@@ -15,12 +15,14 @@ Zorunlu (publisher):
 | `SHOPIFY_APP_CLIENT_SECRET` | Admin client credentials |
 | `WORKER_AUTH_TOKEN` | Shared Bearer. Worker tarafında `WORKER_SECRET` (gemini-image-worker, news-feed-proxy) = `AUTH_TOKEN` (ledger, image-pipeline, article-writer) |
 
-İsteğe bağlı (distributor):
+İsteğe bağlı (distributor — sosyal POST):
 
 | Name | Role |
 | --- | --- |
-| `STORRITO_TOKEN` | IG Story `@aviatorszone` |
-| Meta poster Bearer | `soft-snow-c1c2` / `facebook-page-poster` (aynı worker Bearer olabilir) |
+| `POSTER_SECRET` | Storrito `x-poster-secret` (`/schedule`). Worker içindeki `STORRITO_TOKEN` env’e gerekmez. |
+| `WORKER_AUTH_TOKEN` | IG feed `soft-snow-c1c2` + Facebook poster Bearer (`WORKER_SECRET`) |
+
+`CLOUDFLARE_API_TOKEN` bu header’ların yerine geçmez (401).
 
 Tema token (`SHOPIFY_CLI_THEME_TOKEN`) haber yayını için gerekmez.
 
@@ -40,7 +42,7 @@ curl -sS -A "$UA" https://gemini-image-worker.oevitan.workers.dev/health
 curl -sS -A "$UA" -H "Authorization: Bearer $WORKER_AUTH_TOKEN" \
   'https://news-feed-proxy.oevitan.workers.dev/feeds?max_age_hours=96&nocache=1'
 curl -sS -A "$UA" -H "Authorization: Bearer $WORKER_AUTH_TOKEN" \
-  'https://aviation-news-ledger.oevitan.workers.dev/undistributed?account=$SHOPIFY_FLAG_STORE737&limit=5'
+  'https://aviation-news-ledger.oevitan.workers.dev/undistributed?account=piloteyes737&limit=5'
 ```
 
 `/health` public’tir; auth kanıtı **değildir**.
@@ -58,7 +60,9 @@ API sırası: `2026-07` → `2026-04` → `2025-10`.
 
 ## Higgsfield MCP
 
-Görsel KATMAN 1: model id `grok_image_2_0`. Oturum 401 ise Grok zinciri ölüdür. KATMAN 2 Higgsfield yedek (`gpt_image_2` / `nano_banana_pro`). KATMAN 3 Gemini worker `/generate-async` **yalnız last resort** ve `WORKER_AUTH_TOKEN` ister.
+Env secret **değil**. OAuth. Cloud’da bağlamak: `higgsfield.md` (cursor.com/agents → MCP).
+
+Görsel KATMAN 1: Cursor GenerateImage (Grok Image 2). KATMAN 2 (yedek): Higgsfield `grok_image_2_0`. 401 → `higgsfield_unavailable: yes`, Grok ile devam. KATMAN 3 Higgsfield `gpt_image_2` / `nano_banana_pro`. KATMAN 4 Gemini `/generate-async` **yalnız last resort** ve `WORKER_AUTH_TOKEN` ister.
 
 ## Persist
 
