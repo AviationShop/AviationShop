@@ -1,0 +1,25 @@
+{
+  "name": "gorgias-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
+  },
+  "vars": {
+    "GORGIAS_VIEW_ID": "1141463",
+    "BOT_USER_ID": "510914351",
+    "BOT_FROM_ADDRESS": "support@aviationshop.com",
+    "BOT_FROM_NAME": "Aviation Claude"
+  },
+  "secrets": {
+    "required": ["WORKER_SECRET", "GORGIAS_API_KEY", "GORGIAS_EMAIL", "GORGIAS_DOMAIN"]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "bot_name": "Aviation Claude",
+  "skill_version": "v4.1",
+  "source_doc": "gorgias-inbox SKILL.md v4.1 (31 Aug 2026)",
+  "status": "live",
+  "cron": "*/10 * * * *",
+  "storefront": "https://www.aviationshop.com",
+  "shopify_domain": "<SHOPIFY_STORE>",
+  "gorgias_api_base": "https://aviation-shop.gorgias.com/api",
+  "worker": {
+    "url": "https://gorgias-proxy.oevitan.workers.dev",
+    "version": "v1.1-gorgias-2026-08-19",
+    "name": "gorgias-proxy"
+  },
+  "support_from": "support@aviationshop.com",
+  "store_addresses": [
+    "support@aviationshop.com",
+    "orders@aviationshop.com"
+  ],
+  "users": {
+    "bot": { "id": 510914351, "name": "Aviation Claude" },
+    "kalvin": { "id": 510865041, "name": "Kalvin" },
+    "onur": { "id": 510809374, "name": "James J", "note": "Assign by id, not display name" }
+  },
+  "views": {
+    "unassigned": 1141463,
+    "all": 1141464,
+    "inbox": 1141462,
+    "closed": 1141466,
+    "spam": 1141468,
+    "chat": 1141842,
+    "whatsapp": 1141964,
+    "help_center": 1142252,
+    "support_at": 1141649,
+    "orders_at": 1141768,
+    "aviationshopltd_at": 1141820
+  },
+  "limits": {
+    "replies_per_run": 8,
+    "kalvin_emails_per_run": 2,
+    "tickets_per_run": 12,
+    "rule17_tickets": 5,
+    "one_reply_per_ticket_per_run": true,
+    "consecutive_api_errors_abort": 3
+  },
+  "existing_tags": [
+    "feedback",
+    "positive",
+    "negative",
+    "RETURN/EXCHANGE",
+    "sample ticket",
+    "PRODUCT",
+    "ORDER-CHANGE/CANCEL",
+    "spam"
+  ],
+  "metafields": {
+    "run_log": { "namespace": "gorgias_bot", "key": "run_log", "type": "json", "keep": 60 },
+    "learned_patterns": { "namespace": "gorgias_bot", "key": "learned_patterns", "type": "json", "keep": 40 }
+  },
+  "custom_catalog": {
+    "pillow": "/products/custom-design-image-logo-designed-airplane-shape-decorative-pillows",
+    "hat": "/products/custom-design-image-hats",
+    "hoodie": "/products/concorde-designed-huawei-honor-cases",
+    "pilot_jacket": "/products/custom-flag-name-with-badge-designed-pilot-jackets",
+    "mug": "/products/pilot-epaulette-1-2-3-4-lines-printed-customisable-mugs"
+  },
+  "custom_catalog_notes": {
+    "hoodie": "Handle looks like a phone case leftover; live title is Custom Logo & Flag & Name Double Side Hoodies. Still verify via product JSON before sending."
+  },
+  "jacket_sizes": {
+    "S": { "kg": 50, "cm": 165 },
+    "M": { "kg": 75, "cm": 175 },
+    "L": { "kg": 85, "cm": 185 },
+    "XL": { "kg": 95, "cm": 195 }
+  },
+  "approved_numbers": {
+    "prep_business_days": "3-7",
+    "delivery_after_ship_days": "7-15",
+    "tracking_email_if_fulfilled_no_number_days": "3-5",
+    "return_ship_t1_usd": "45-65",
+    "return_ship_t2_usd": "35-65",
+    "size_exchange_discount_pct": 30,
+    "return_window_days": 30,
+    "customs_declare_max_usd": 20,
+    "wholesale_stores": "120+"
+  },
+  "tracking_link": "https://www.17track.net/en/track#nums=<TRACKING_NO>",
+  "forbidden_in_customer_body": ["authenticate", "myshopify", "/admin"],
+  "kalvin_handover_email": null,
+  "kalvin_handover_email_note": "Set env KALVIN_HANDOVER_EMAIL for Rule 4C Gmail. Do not invent an address. If unset, skip mail; still write the note and assign Kalvin.",
+  "dropbox_home": {
+    "path_display": "/@ Claude/@ CUSTOMER SUPPORT",
+    "file_id": "id:G9fhAuLmM4wAAAAAAErbsA",
+    "updates_path_display": "/@ Claude/@ CUSTOMER SUPPORT/Updates",
+    "updates_file_id": "id:G9fhAuLmM4wAAAAAAErb0Q",
+    "readme_file_id": "id:G9fhAuLmM4wAAAAAAErcgg",
+    "note": "Write dated Updates/YYYY-MM-DD_konu.md after every material run. No tokens, no customer emails. create_file cannot overwrite — always a new file."
+  }
+}
