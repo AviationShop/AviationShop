@@ -21,9 +21,11 @@
 - IG/FB: `Authorization: Bearer ${env.WORKER_SECRET}` değilse 401 (`META_TOKEN` / `FB_PAGE_TOKEN` kullanılmaz)
 - Ledger: `Bearer ${env.AUTH_TOKEN}`
 
-Cloud Agent worker’ın `env`’ine giremez. Kapı değerini header’da göstermek zorunda. `CLOUDFLARE_API_TOKEN` bu kapı **değil** (aynı uçlar 401).
+Cloud Agent worker’ın `env`’ine giremez. Kapı değeri Mini Grok’ta **Dropbox skill dosyasının içinde düz metin** durur (`/@ Claude/@ MAC MINI AUTOMATIONS/Aviation News Publisher/distributor-SKILL.md` Step 1). Grok onu worker’dan çekmez; skill’i okur, header’a koyar. `STORRITO_TOKEN` da aynı skill’de — Mini Storrito API’ye **direkt** gider (`storrito-story-poster` worker `POSTER_SECRET` ayrı, AUTH ile 401).
 
-Cursor env’e kopyalanacak olan **yalnız kapı** (Mac Mini’deki aynı string; rotate etme):
+Cursor Cloud bu skill’i otomatik env’e koymaz. Runtime’da Dropbox MCP ile oku; **repoya / PR’ye token yazma**. `CLOUDFLARE_API_TOKEN` bu kapı değil.
+
+Cursor env’e kopyalamak **zorunlu değil** (Dropbox skill okunursa). Yedek olarak env’e koymak istersen Mini’deki aynı string; rotate etme:
 
 | Cursor env | Worker’daki ad |
 | --- | --- |
