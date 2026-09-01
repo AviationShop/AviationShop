@@ -16,7 +16,7 @@ Bu görev Mac mini’deki Cowork görevinin yerini alır. Mac’ten `api.cloudfl
 | Repository | `AviationShop/AviationShop` |
 | Computer use | Kapalı |
 | Pull requests | Kapalı |
-| Slack / e-posta | İsteğe bağlı; rapor zaten Gmail ile de gidebilir |
+| Slack / e-posta | Kapalı — rapor bu agent sohbetine yazılır |
 
 Ortam secret’ı (zorunlu):
 
@@ -31,8 +31,9 @@ Follow `.cursor/automations/bot-defense-daily.md` exactly.
 Run `python3 scripts/botdefense/fetch-last.py` to read today's archive.
 Do not open a pull request.
 Do not change Cloudflare rules.
-Write to Onur in Turkish only when a report trigger fires (silence principle).
-If a report is needed, also send it via Gmail to oevitan@gmail.com.
+Do not send email.
+Write to Onur in Turkish in this chat only when a report trigger fires (silence principle).
+If a report is needed, also save it to Dropbox reports/.
 ```
 
 ---
@@ -106,10 +107,8 @@ Bunların hiçbiri yoksa: sessizce bit.
 
 ## Çıktı kanalı
 
-1. Bu agent sohbetine kısa Türkçe not (yalnız tetikleyici varsa)
-2. Gmail → `oevitan@gmail.com` — konu: `Bot savunması — YYYY-MM-DD` (yalnız tetikleyici varsa)
-3. Dropbox arşivi (tetikleyici varsa):  
-   `/@ Claude/STORE_SYSTEMS/Bot Defense/reports/YYYY-MM-DD.md`  
-   (kanonik rapor evi bundan sonra Dropbox; Drive’a yazma)
+1. **Bu agent sohbeti** — kısa Türkçe rapor (yalnız tetikleyici varsa). E-posta yok.
+2. Dropbox arşivi (tetikleyici varsa):  
+   `/@ Claude/STORE_SYSTEMS/Bot Defense/reports/YYYY-MM-DD.md`
 
-Sakin günde e-posta da yok; sessiz günde Dropbox’a da yazma.
+Sakin günde sohbete de yazma; Dropbox’a da yazma.
