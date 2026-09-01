@@ -2,7 +2,7 @@
 
 Mac Mini Claude Cowork cron’unun yerine geçen **tek pipeline**. Publisher + distributor aynı otomasyonda, günde **6 slot**.
 
-Canlı servisler Cloudflare Workers’ta kalır. Bu klasör yalnızca orkestrasyon skill’idir.
+Canlı **post + persist** Cloudflare Workers’ta. Bu klasör **orkestrasyon**: overlay Python, Shopify Admin, Higgsfield/Grok görsel. Ayrıntı: `architecture.md`.
 
 ## Slot (Europe/Istanbul)
 
@@ -23,12 +23,13 @@ Cron (Istanbul): `0 0,4,8,12,16,20 * * *`
 ## Bu koşuda oku (sırayla)
 
 1. `SKILL.md` — launcher, hard rules, exit paths
-2. `secrets.md` — env / MCP kapıları (eksikse yayın yok)
-3. `publisher.md` — aday → yaz → görsel → Shopify → D1
-4. `image-chain.md` — Grok Image 2 (Cursor) first; Higgsfield yedek
-5. `higgsfield.md` — Cloud MCP OAuth (env secret değil)
-6. `distributor.md` — overlay + sosyal (poster Bearer yoksa POST yok)
-7. `watchdog.md` — 5 saatlik dead-man (ayrı otomasyon)
+2. `architecture.md` — orkestrasyon vs worker (post worker atar)
+3. `secrets.md` — env / MCP kapıları
+4. `publisher.md` — aday → yaz → görsel → Shopify → D1
+5. `image-chain.md` — Grok Image 2 (Cursor) first; Higgsfield yedek
+6. `higgsfield.md` — Cloud MCP OAuth (env secret değil)
+7. `distributor.md` — overlay Python + worker POST (direkt Storrito yok)
+8. `watchdog.md` — 5 saatlik dead-man (ayrı otomasyon)
 
 ## Cutover
 

@@ -20,8 +20,10 @@ Prompt:
 ```
 Run the Aviation News publisher+distributor pipeline for this slot.
 
-Follow `.cursor/automations/aviation-news/SKILL.md` exactly.
-Then publisher.md, image-chain.md, secrets.md. After publish, distributor.md.
+Follow `.cursor/automations/aviation-news/SKILL.md` then architecture.md.
+You orchestrate. Workers post: storrito-story-poster /schedule, soft-snow-c1c2 /feed, facebook-page-poster /photo.
+Overlay is overlay_gen.py. Persist via gemini-image-worker /persist-bytes. Shopify Admin and Higgsfield are not workers.
+Do not call storrito.com or Meta Graph from the agent.
 
 TARGET_PUBLISHED = 3 unless the owner already confirmed 4.
 Grok Image 2 via Cursor GenerateImage first; Higgsfield grok_image_2_0 backup if MCP is logged in; Gemini /generate-async last resort.

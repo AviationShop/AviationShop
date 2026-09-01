@@ -13,17 +13,15 @@
 | `gemini-image-worker` | `WORKER_SECRET`, `GEMINI_API_KEY`, … |
 | `news-feed-proxy` | `WORKER_SECRET` |
 
-`STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` **Cursor env’e kopyalanmaz.** Worker zaten kullanıyor.
+`STORRITO_TOKEN` / `META_TOKEN` / `FB_PAGE_TOKEN` **orkestrasyona kopyalanmaz.** Worker zaten kullanıyor. Sen worker’a HTTP kapısını gösterirsin; post’u worker atar.
 
-**Katman B — HTTP kapısı.** Public `workers.dev` çağrısı önce kapıyı ister. Kod:
+**Katman B — HTTP kapısı** (orkestrasyon → worker). Public `workers.dev`:
 
-- Storrito: `x-poster-secret === env.POSTER_SECRET` değilse 401 (`STORRITO_TOKEN`’a hiç dokunulmaz)
-- IG/FB: `Authorization: Bearer ${env.WORKER_SECRET}` değilse 401 (`META_TOKEN` / `FB_PAGE_TOKEN` kullanılmaz)
-- Ledger: `Bearer ${env.AUTH_TOKEN}`
+- Story: `x-poster-secret === env.POSTER_SECRET` (`storrito-story-poster`). Ledger AUTH ile **aynı değil** (AUTH → 401). Mini Dropbox skill hâlâ direkt Storrito.com yazıyor — **eski**; Cloud Story yalnız bu worker.
+- IG Feed / FB: `Authorization: Bearer ${env.WORKER_SECRET}`
+- Ledger / persist: `Bearer ${env.AUTH_TOKEN}` / `WORKER_SECRET`
 
-Cloud Agent worker’ın `env`’ine giremez. Kapı değeri Mini Grok’ta **Dropbox skill dosyasının içinde düz metin** durur (`/@ Claude/@ MAC MINI AUTOMATIONS/Aviation News Publisher/distributor-SKILL.md` Step 1). Grok onu worker’dan çekmez; skill’i okur, header’a koyar. `STORRITO_TOKEN` da aynı skill’de — Mini Storrito API’ye **direkt** gider (`storrito-story-poster` worker `POSTER_SECRET` ayrı, AUTH ile 401).
-
-Cursor Cloud bu skill’i otomatik env’e koymaz. Runtime’da Dropbox MCP ile oku; **repoya / PR’ye token yazma**. `CLOUDFLARE_API_TOKEN` bu kapı değil.
+Kapı Dropbox Mini skill’de (ledger/feed/FB Bearer). Story `POSTER_SECRET` o dosyada yoksa env veya worker deploy notundan. **Repoya token yazma.** `CLOUDFLARE_API_TOKEN` kapı değil.
 
 Cursor env’e kopyalamak **zorunlu değil** (Dropbox skill okunursa). Yedek olarak env’e koymak istersen Mini’deki aynı string; rotate etme:
 

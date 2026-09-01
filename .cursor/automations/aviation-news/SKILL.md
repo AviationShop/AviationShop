@@ -4,9 +4,9 @@ Her slotta bu dosyayı **önce** oku. Alt dosyalar launcher’ı ezmez — çeli
 
 ## Bu koşunun işi
 
-1. Secret + MCP smoke (`secrets.md`)
+1. Secret + MCP smoke (`secrets.md`, `architecture.md`)
 2. Publisher pass — hedef `TARGET_PUBLISHED=3` (owner 4 demedikçe)
-3. Aynı hikâyeler için distributor pass — overlay+persist her zaman; Storrito/Meta yoksa **sosyal POST yok**, sahte 4/4 yok
+3. Distributor: overlay Python + persist worker + sosyal **worker POST** (direkt Storrito/Graph yok)
 4. Türkçe owner raporu (Onur Evitan)
 
 PR açma. Tema değiştirme. Shopify Files’a görsel yükleme.
@@ -43,12 +43,15 @@ Havuz <12 ve taze allow item varken 0 yayın → raporun ilk satırı `🔴 SILE
 
 ## Workers
 
+Post + persist worker’da. Shopify ve Higgsfield burada yok. Tam tablo: `architecture.md`.
+
 | Worker | URL |
 | --- | --- |
 | ledger | `https://aviation-news-ledger.oevitan.workers.dev` |
+| persist | `https://gemini-image-worker.oevitan.workers.dev` |
+| IG Story | `https://storrito-story-poster.oevitan.workers.dev` |
+| IG Feed | `https://soft-snow-c1c2.oevitan.workers.dev` |
+| Facebook | `https://facebook-page-poster.oevitan.workers.dev` |
 | feed-proxy | `https://news-feed-proxy.oevitan.workers.dev` |
-| gemini/persist | `https://gemini-image-worker.oevitan.workers.dev` |
-| image QC | `https://aviation-image-pipeline.oevitan.workers.dev` |
-| photography | `https://photography-pool.oevitan.workers.dev` |
 
 D1 `aviation-blog` `32af39ea-7291-40cc-9768-bd63675befee` — MCP query dedup’a yardımcı olur; insert tercihen `POST /ledger-add`.
