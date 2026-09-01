@@ -108,5 +108,8 @@ Bunların hiçbiri yoksa: sessizce bit.
 
 1. Bu agent sohbetine kısa Türkçe not (yalnız tetikleyici varsa)
 2. Gmail → `oevitan@gmail.com` — konu: `Bot savunması — YYYY-MM-DD` (yalnız tetikleyici varsa)
+3. Dropbox arşivi (tetikleyici varsa):  
+   `/@ Claude/STORE_SYSTEMS/Bot Defense/reports/YYYY-MM-DD.md`  
+   (kanonik rapor evi bundan sonra Dropbox; Drive’a yazma)
 
-Sakin günde e-posta da yok.
+Sakin günde e-posta da yok; sessiz günde Dropbox’a da yazma.
