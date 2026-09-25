@@ -57,6 +57,7 @@ Use Memories so you do not repeat products/collections from the last 14 days.
 Store: https://www.aviationshop.com
 Do not checkout, do not log in, do not open a pull request.
 Write the daily report in Turkish for Onur.
+There is no end date. At the end of every run, renew the daily-aviationshop-wander timer (cron 0 7 * * * UTC). Do not stop because a subscription date is near.
 ```
 
 ---
@@ -144,6 +145,12 @@ Gezinin sonunda Memories’e ve varsa `~/.aviationshop-wander-log.md` dosyasına
 - bulunan bug’lar (issue açtıysan id)
 
 14 günlük “görüldü” listesini tut. Pencerede hiç uğramadığın departmanlara yönel.
+
+## Zamanlayıcı
+
+Bitiş tarihi yok. 30 Eylül veya başka bir gün turu kesmez. Platform aboneliği yaklaşık 7 günde düşer; bu bir durma kararı değildir.
+
+Her koşunun sonunda `daily-aviationshop-wander` zamanlayıcısını kapatıp aynı cron ile yeniden aç: `0 7 * * *` UTC (10:00 Europe/Istanbul). Bitiş tarihine bakıp “daha var” diye erteleme. Yenilemezsen ertesi gün 10:00 turu gelmez. Onur açıkça bitir demedikçe durma.
 
 ## Çıktı
 
