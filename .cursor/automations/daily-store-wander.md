@@ -48,22 +48,23 @@ Bu yol Cursor cloud tarayıcısını kullanır, senin Mac’ini değil. Cloudfla
 Aşağıdaki kısa metni automation prompt’una yapıştır.
 
 ```
-Wander the LIVE Aviation Shop storefront today.
+Wander the LIVE Aviation Shop storefront today. There is no product cap.
 
-Follow `.cursor/automations/daily-store-wander.md` exactly.
+Follow `.cursor/automations/daily-store-wander.md` exactly: two departments, at least 10 products across three types, two searches, one tool, plus cart or content or mobile, and the developer checks on the pages you opened.
 Use `.cursor/automations/wander-seeds.json` only as starting points.
 Use Memories so you do not repeat products/collections from the last 14 days.
 
 Store: https://www.aviationshop.com
 Do not checkout, do not log in, do not open a pull request.
 Write the daily report in Turkish for Onur.
+There is no end date. At the end of every run, renew the daily-aviationshop-wander timer (cron 0 7 * * * UTC). Do not stop because a subscription date is near.
 ```
 
 ---
 
 ## Rol
 
-Onur tasarımcı. Sen meraklı bir müşteri gibi canlı vitrine girersin — sabit URL listesini tıklayan bir sağlık check’i değilsin. Katalog 100k+ ürün ve 1600+ koleksiyon. Her koşuda sitenin **başka bir köşesine** in, ürünleri ve description’ları gerçekten oku, bozuk / boş / çirkin / markaya uymayan her şeyi raporla.
+Onur tasarımcı. Aynı koşuda iki şapka tak: meraklı müşteri ve vitrini okuyan geliştirici. Katalog 100k+ ürün ve 1600+ koleksiyon. Limit yok — kısa bir sağlık check’i yetmez. Her koşuda sitenin **başka köşelerine** in, açıklamaları gerçekten oku, sayıları ve varyantları kontrol et. Bozuk, boş, çirkin, markaya uymayan, yanlış sayılan veya şablon kopyası olan her şeyi raporla.
 
 Bu koşu bir geliştiricinin kendi makinesindeyse (Cursor Desktop veya `agent -p`), o makinenin tarayıcısını kullan. Cloud sandbox’taysan computer use kullan.
 
@@ -84,30 +85,41 @@ Bu koşu bir geliştiricinin kendi makinesindeyse (Cursor Desktop veya `agent -p
 1. Memories’den (veya `~/.aviationshop-wander-log.md` dosyasından) son 14 günde gezilen URL / collection / product handle listesini oku. Bunları tekrar açma (eski bir bug’ı doğrulamak hariç).
 2. Şansı bugünün UTC tarihi (`YYYY-MM-DD`) ve saatten birkaç ekstra zar ile kur. Aynı gün iki koşu bile ayrışabilsin.
 3. Önce homepage’i aç. Gerçek içerik gelene kadar bekle. Desktop screenshot al.
-4. Aşağıdaki görevlerden **rastgele 2 veya 3** tanesini çalıştır. Dün çalıştırdığın çifti bugün tekrarlama.
+4. Dünkü departman çiftini tekrarlama. Aşağıdaki müşteri turunun **hepsini** çalıştır. Süre veya ürün sayısı için kendi kendine limit koyma; 14 günlük “görüldü” listesi tek tekrarsızlık kuralı.
 
-### Görevler (2–3 tane seç)
+### Müşteri turu (her gün, hepsi)
 
-**A. Mega-menu wander**  
-Header’dan rastgele bir üst kategori aç (Clothing, Key Chains, Phone Cases, Watches, Mugs, Models, Pilot Gear, Home, Bags, Jewelry, Car, Tools, vb.). Sonra rastgele bir alt koleksiyona gir. En az iki ekran kaydır. Boş grid, kırık kart, eksik fiyat, üst üste binen yazı not et.
+**A. İki departman**  
+Header’dan dünden farklı **iki** üst kategori aç (Clothing, Key Chains, Phone Cases, Watches, Mugs, Models, Pilot Gear, Home, Bags, Jewelry, Car, Tools, vb.). Her birinde bir alt koleksiyona gir. Boş grid, kırık kart, eksik fiyat, üst üste yazı, hub’da 10 ürün ama kardeşte binlerce ürün not et.
 
-**B. Product deep-dive**  
-Koleksiyon veya aramadan, son 14 günde görmediğin **4–6 ürün** aç. Her birinde: başlık, fiyat, compare-at fiyat, description, variant (beden / renk / airline), galeri (2–3 görsel), “add your name” / LED / pack-size seçenekleri. Ürünle uyuşmayan generic copy, eksik görsel, yanlış livery, tekrarlayan paragraflar, kesilmiş metin, görünür “Your browser does not support the video tag”, tıklanınca hiçbir şey yapmayan variant — bunları işaretle.
+**B. Ürün derin bakış**  
+Son 14 günde görmediğin **en az 10 ürün**, en az **üç farklı tip** (ör. kupa + hoodie + anahtarlık). Her birinde: başlık, fiyat, compare-at, description, variant (beden / renk / airline / pack), galeri (2–3 görsel), “add your name” / LED / pack-size. Ürünle uyuşmayan generic copy, eksik görsel, yanlış livery, tekrarlayan paragraflar, kesilmiş metin, görünür “Your browser does not support the video tag”, seçilemeyen variant — bunları işaretle.
 
-**C. Search wander**  
-`wander-seeds.json` içindeki `search_queries` listesinden rastgele bir sorgu yaz (veya benzer bir havacılık sorgusu uydur). 2 sonuca gir. Boş veya bariz yanlış sonuç bir bulgudur.
+**C. İki arama**  
+`wander-seeds.json` içindeki `search_queries` listesinden iki farklı sorgu, ya da benzer bir havacılık sorgusu. Her birinden 2 sonuca gir. Sonuç başlığındaki sayı tavanı (1000 / 1002) ve alakasız 10. sırayı not et.
 
-**D. Tool wander**  
-Aviation Tools menüsünden veya `wander-seeds.json` → `tools` listesinden rastgele bir ücretsiz araç aç. Örnek değer gir, sonucun güncellendiğini kontrol et, screenshot al. 0’da kalan, input’u yok sayan veya mobilde kırık araçları işaretle.
+**D. Bir araç**  
+`wander-seeds.json` → `tools` listesinden son 14 günde açılmamış bir ücretsiz araç. Örnek değerin sonucunu kontrol et. 0’da kalan, input’u yok sayan veya hero’su “Quick aviation calculation” diye genel kalan aracı işaretle.
 
-**E. Content wander**  
-Rastgele bir blog yazısı, About, Reviews veya Pilot Resources sayfası aç. Layout, görseller, yazı içindeki ölü linkler.
+**E veya F veya G’den en az bir tane daha**  
+İçerik sayfası (blog / About / Reviews), sepet duman testi (ekle ve çıkar, checkout yok), veya ~390px genişlikte aynı koleksiyon + PDP. Üçünü birden yapmak serbest.
 
-**F. Cart smoke**  
-Rastgele bir ürünü (variant varsa bir variant) sepete ekle, cart/drawer’ı aç, görsel / başlık / fiyat / adet doğrula, ürünü çıkar. Checkout yok.
+### Geliştirici kontrolü (açtığın sayfaların üstünde, ayrı katalog taraması değil)
 
-**G. Mobile pass**  
-Viewport ~390×844. Bugünkü yoldan bir koleksiyon + bir PDP’yi tekrarla. Header taşması, üst üste fiyatlar, okunmayan description, kullanılamayan variant picker.
+Açtığın koleksiyon ve ürünlerde şunları say. Şüpheyi bulgu diye yazma; sayıyı veya metni gördüğün şeyi yaz.
+
+- Üst koleksiyon `products_count` ile bariz alt koleksiyon. Üst boş/çok küçük, alt doluysa hub hatası.
+- Seçeneklerin kartezyen çarpımı ile `variants` uzunluğu. 250’de kesilen ürün (renk × beden × stil daha büyükse) varyant tavanı.
+- `compare_at_price` satış fiyatının altındaysa yaz. $0 varyant yaz.
+- Farklı başlıklı ürünlerde birebir aynı description HTML.
+- Başlıktaki uçak, havayolu veya parça adı description’da yoksa yaz. Handle ile vitrin başlığı başka ürün konuşuyorsa yaz.
+- Ham shortcode, “Made with passion”, “M aterial” gibi kırık boşluk, video-tag cümlesi.
+
+**E. İçerik** — bir blog, About, Reviews veya Pilot Resources sayfası. Ölü link, kesik `<title>`.
+
+**F. Sepet** — bir varyantı sepete ekle, başlık / fiyat / adet doğrula, çıkar. Checkout yok.
+
+**G. Dar ekran** — aynı koleksiyon + bir PDP’yi ~390px genişlikte tekrar aç. Taşan header, okunmayan açıklama, kullanılamayan variant.
 
 ## Her üründe bakılacaklar
 
@@ -134,13 +146,19 @@ Gezinin sonunda Memories’e ve varsa `~/.aviationshop-wander-log.md` dosyasına
 
 14 günlük “görüldü” listesini tut. Pencerede hiç uğramadığın departmanlara yönel.
 
+## Zamanlayıcı
+
+Bitiş tarihi yok. 30 Eylül veya başka bir gün turu kesmez. Platform aboneliği yaklaşık 7 günde düşer; bu bir durma kararı değildir.
+
+Her koşunun sonunda `daily-aviationshop-wander` zamanlayıcısını kapatıp aynı cron ile yeniden aç: `0 7 * * *` UTC (10:00 Europe/Istanbul). Bitiş tarihine bakıp “daha var” diye erteleme. Yenilemezsen ertesi gün 10:00 turu gelmez. Onur açıkça bitir demedikçe durma.
+
 ## Çıktı
 
-Kısa Türkçe günlük rapor yaz (CLI koşusunda stdout + `~/Desktop/aviationshop-wander-YYYY-MM-DD.md`):
+Türkçe günlük rapor yaz (CLI koşusunda stdout + `~/Desktop/aviationshop-wander-YYYY-MM-DD.md` + PDF). Kısa tutmak için bulgu atlama.
 
-1. **Bugün nereye gittim** — URL listesi
-2. **Ürün notları** — 3–6 ürün, her biri bir cümle (description, görsel, variant)
-3. **Sorunlar** — sadece gerçek sorunlar, şiddet (blocker / görsel / copy). Yoksa: “Bugün blocker yok.”
+1. **Bugün nereye gittim** — URL listesi, koleksiyon sayıları
+2. **Ürün notları** — açtığın ürünler, her biri bir cümle (description, görsel, variant)
+3. **Sorunlar** — sadece doğruladığın sorunlar, şiddet (blocker / görsel / copy / katalog). Yoksa: “Bugün blocker yok.”
 4. **Yarın için** — son günlerde uğramadığın bir departman
 
 Gerçek bir vitrin bug’ı varsa `AviationShop/AviationShop` içinde **tek** GitHub issue aç:
