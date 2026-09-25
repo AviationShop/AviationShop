@@ -1,0 +1,657 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breaking_news": {
+      "type": "breaking-news-ticker",
+      "settings": {
+        "enabled": true,
+        "blog": "news",
+        "max_items": 4,
+        "badge_hours": 48
+      }
+    },
+    "cr_slideshow": {
+      "type": "cr-slideshow",
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104805_f235793b-e0cb-43e3-a80b-fc6d2aaf6645_min.webp?v=1782816708",
+            "mobile_images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_102506_51c3a8d5-1cdf-485e-811d-dfd793c97aa4_min.webp?v=1782815217",
+            "image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104805_f235793b-e0cb-43e3-a80b-fc6d2aaf6645_min.webp?v=1782816708",
+            "mobile_image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_102506_51c3a8d5-1cdf-485e-811d-dfd793c97aa4_min.webp?v=1782815217",
+            "theme": "light",
+            "eyebrow": "Collector series",
+            "title": "Model Aircraft",
+            "subtitle": "Die-cast & resin models in every airline livery",
+            "cta_text": "Shop now",
+            "link": "/collections/airplanes"
+          }
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {
+            "images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104809_ab6f3a71-43af-4a50-8e51-d1c2fd533549_min.webp?v=1782816708",
+            "mobile_images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101633_a6846221-3bc7-4cfb-bf1d-136e44574be6_min.webp?v=1782815116",
+            "image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104809_ab6f3a71-43af-4a50-8e51-d1c2fd533549_min.webp?v=1782816708",
+            "mobile_image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101633_a6846221-3bc7-4cfb-bf1d-136e44574be6_min.webp?v=1782815116",
+            "theme": "light",
+            "eyebrow": "Wall art",
+            "title": "Canvas Prints & Posters",
+            "subtitle": "Bring the sky into any room",
+            "cta_text": "Shop now",
+            "link": "/collections/canvas-prints"
+          }
+        },
+        "s3": {
+          "type": "slide",
+          "settings": {
+            "images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104815_8809d86e-42f2-4991-b305-3243f51db14d_min.webp?v=1782816708",
+            "mobile_images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101636_d40eb2b3-91c0-4642-a021-eec0aac4fb53_min.webp?v=1782815115",
+            "image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104815_8809d86e-42f2-4991-b305-3243f51db14d_min.webp?v=1782816708",
+            "mobile_image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101636_d40eb2b3-91c0-4642-a021-eec0aac4fb53_min.webp?v=1782815115",
+            "theme": "light",
+            "eyebrow": "Everyday carry",
+            "title": "Aviation Accessories",
+            "subtitle": "Sunglasses, wallets, tags & lanyards",
+            "cta_text": "Shop now",
+            "link": "/collections/accessories"
+          }
+        },
+        "s4": {
+          "type": "slide",
+          "settings": {
+            "images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104821_de32cbcc-063f-488d-996c-0a228666d996_min.webp?v=1782816708",
+            "mobile_images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101846_883601b1-e5c7-436f-a125-6a2167a3392e_min.webp?v=1782815116",
+            "image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104821_de32cbcc-063f-488d-996c-0a228666d996_min.webp?v=1782816708",
+            "mobile_image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101846_883601b1-e5c7-436f-a125-6a2167a3392e_min.webp?v=1782815116",
+            "theme": "light",
+            "eyebrow": "Home & decor",
+            "title": "Airplane Pillows",
+            "subtitle": "Plush airline-livery cushions",
+            "cta_text": "Shop now",
+            "link": "/collections/designed-airplane-shape-decorative-pillows"
+          }
+        },
+        "s5": {
+          "type": "slide",
+          "settings": {
+            "images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104826_55ef5945-20f1-440a-85ae-77bdbee0172f_min.webp?v=1782816708",
+            "mobile_images": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101643_1a312d3b-d45d-4fad-b7e2-aa47b5af515d_min.webp?v=1782815115",
+            "image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_104826_55ef5945-20f1-440a-85ae-77bdbee0172f_min.webp?v=1782816708",
+            "mobile_image_url": "https://cdn.shopify.com/s/files/1/1217/7182/files/hf_20260630_101643_1a312d3b-d45d-4fad-b7e2-aa47b5af515d_min.webp?v=1782815115",
+            "theme": "light",
+            "eyebrow": "Home & decor",
+            "title": "Aircraft Tail Pillows",
+            "subtitle": "Iconic tail-fin designs",
+            "cta_text": "Shop now",
+            "link": "/collections/designed-aircraft-tail-pillows"
+          }
+        },
+        "s6": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110429_6b927dc2-ec66-4fb2-9170-95cff5d67d5e_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110432_cfc21ca0-56d5-46a3-b3e0-3b4d2fc1017b_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110606_6fc7f946-38fc-4c67-914c-1b5835acb9f5_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110600_346b36b5-c525-4fde-8df8-e16390f0ef57_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110758_1a69bb36-a6e8-415e-b7f5-bcb4891eceb8_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110429_ba0f5d3d-1b60-4ef0-a6a2-43abaf052a01_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110430_aa5d053a-fc98-4851-b4fd-63076650ab2b_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110603_7b49e9a6-150a-4a8e-ae22-501a74d20f9c_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110558_a98e0897-c992-46af-93d5-69c02aed60fb_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110757_26be7b09-e8a3-444c-b1f7-7289636cb7be_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110429_6b927dc2-ec66-4fb2-9170-95cff5d67d5e_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110429_ba0f5d3d-1b60-4ef0-a6a2-43abaf052a01_min.webp",
+            "theme": "light",
+            "eyebrow": "Collector series",
+            "title": "Military Aircraft Models",
+            "subtitle": "Fighters, bombers & warbirds in die-cast detail",
+            "cta_text": "Shop now",
+            "link": "/collections/military-aircraft-models"
+          }
+        },
+        "s7": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110758_fc41fcbd-4d50-46f4-86e7-3b861114fa69_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110920_7587b75c-d856-4d08-859c-dd7130c8bd82_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110917_fce35a33-5100-4fdf-880c-ffc3bcde3bc2_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111248_ce65c0d4-02f9-4262-8423-30c09586c6c3_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111248_20adcb52-0540-4680-8adb-2a329de4d93b_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110755_71f06f22-1d78-43d5-aa13-9b73b73fdae2_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110921_7b9d0800-19a7-4e5b-a78b-e2fabd6c384a_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110920_21ff0797-2350-4850-a330-3704394660a2_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111249_455db515-b847-4afc-a095-16fc1b8b7fc2_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111247_28a7e3dc-6158-4f7e-a1e7-a4ab12844626_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110758_fc41fcbd-4d50-46f4-86e7-3b861114fa69_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_110755_71f06f22-1d78-43d5-aa13-9b73b73fdae2_min.webp",
+            "theme": "light",
+            "eyebrow": "Pilot essentials",
+            "title": "Aviation Watches",
+            "subtitle": "Instrument-dial & pilot chronograph watches",
+            "cta_text": "Shop now",
+            "link": "/collections/watches"
+          }
+        },
+        "s8": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111419_2b395ede-39b7-4972-8a1a-8d3486732292_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_141638_d64a6c0a-d6e8-4cf3-971b-3a1a859b543f_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111604_d30eea4b-98e4-4cd9-917e-572a1808cf84_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111604_def4e3c2-ec1d-46eb-8f72-f9e99f1dfe72_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111417_e55d3f7e-2c38-4ea1-9feb-d2c9a0289508_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_141655_8e9c2988-97bd-4d92-bccf-43118260a89c_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111605_9fb2a30f-1500-46f1-96a6-0bd6419181e7_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111605_6f363d34-bc20-4267-a17c-1eebcc0f6caa_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111419_2b395ede-39b7-4972-8a1a-8d3486732292_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111417_e55d3f7e-2c38-4ea1-9feb-d2c9a0289508_min.webp",
+            "theme": "light",
+            "eyebrow": "Wear it",
+            "title": "Aviation T-Shirts",
+            "subtitle": "Pilot graphics & custom uniform tees",
+            "cta_text": "Shop now",
+            "link": "/collections/t-shirts"
+          }
+        },
+        "s9": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111736_c407aa9f-cc7d-428f-840c-999622728bc4_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111739_439be74c-d4dd-4a3c-a315-2f0bd7f292e4_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111908_dda204a1-85f5-4fcd-ab9d-7f3aa24475b8_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111909_e73a6f8b-2ee0-4ac8-9c6c-368ee602f958_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112245_e5802a98-5ce9-4e8d-8455-fd5e4f0a328a_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111734_4f250cdf-d019-4c2d-b2ed-6b32487b8d5b_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111736_f0189891-4245-460e-92e0-9980713680cb_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111908_9541fbe2-6094-4ab8-a1b7-c69b714173df_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111912_43ae6909-33a1-4dc7-9b14-32df19a4e7af_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112244_5fd4226c-f726-4efe-a119-f395c344e889_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111736_c407aa9f-cc7d-428f-840c-999622728bc4_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_111734_4f250cdf-d019-4c2d-b2ed-6b32487b8d5b_min.webp",
+            "theme": "light",
+            "eyebrow": "Travel ready",
+            "title": "Bags & Travel Cases",
+            "subtitle": "Flight bags, backpacks & messengers",
+            "cta_text": "Shop now",
+            "link": "/collections/bags-cases"
+          }
+        },
+        "s10": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112247_1b769bd0-f911-4afe-9c7d-06f45a3bdab9_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112521_1ab9aebb-a4fa-40a9-9d7a-7514924ea26a_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112522_1711f94d-9471-4d5b-be1d-d549e64fdd2e_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112652_366e908e-2eab-4db0-9c95-f3a79cc3554f_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112649_2df033ed-c008-427a-98b3-983b9a70379c_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112245_c2094b32-d532-499f-9c22-5abc4754665a_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112520_62a7a4b1-0b28-4c7b-ba06-e7a058f84b02_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112520_e5a977fc-ed6d-4b31-bb7c-56fafef68ec6_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112650_a9a107ee-5083-44b8-8909-96ec6b8ed19d_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112654_c4edcd1d-2437-40bb-94b0-afab7e54324f_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112247_1b769bd0-f911-4afe-9c7d-06f45a3bdab9_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260701_112245_c2094b32-d532-499f-9c22-5abc4754665a_min.webp",
+            "theme": "light",
+            "eyebrow": "Top it off",
+            "title": "Hats & Caps",
+            "subtitle": "Embroidered aviation caps for every type",
+            "cta_text": "Shop now",
+            "link": "/collections/all-hats"
+          }
+        },
+        "s11": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134531_976bd7d7-66b1-4cd4-8e81-c32992a26d10_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134535_443e1588-fbe1-4a47-bf0b-294265ac9746_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134651_95b5d933-2629-41f2-9494-b16218d8b0ef_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_105020_5421a1db-c9e8-4a77-be0d-8a71fe64f9af_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_105022_954a652a-9264-4ea3-b2b7-bbe7a5868ed7_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182519_ceec186e-d162-48e9-8f80-c98f4adb8c8a_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_193652_bfe9f8e9-1cc1-4381-ba56-a6f271b48705_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182524_063b1ced-1273-48d0-8e1f-15798e41e6fb_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182527_98c1f250-38b8-463f-882c-e2bc1652fe6c_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182529_ac9bd608-0b77-40ba-acef-843292ea643c_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134531_976bd7d7-66b1-4cd4-8e81-c32992a26d10_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182519_ceec186e-d162-48e9-8f80-c98f4adb8c8a_min.webp",
+            "theme": "light",
+            "eyebrow": "Everyday carry",
+            "title": "Aviation Key Chains",
+            "subtitle": "Airline tails, silhouettes & pilot tags",
+            "cta_text": "Shop now",
+            "link": "/collections/key-chains"
+          }
+        },
+        "s12": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_102945_1ac0ec76-5bff-4f8d-9ac2-b8c25e72e322_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_103719_a770affb-f348-4cf3-9415-56709444a97b_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_103721_6b76eb6d-e20f-4519-8493-738820067a4b_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_103723_cbc790b0-8710-4c71-8db5-9a160ba67791_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_103726_46ee563d-4244-43a5-aae2-066b0b458569_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182531_feae3998-1478-4562-9093-9cef3f197e29_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182533_69469399-1882-469b-b760-a8b535dd2ebe_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182535_2a167a6b-10a8-41bb-84b6-2e30021f5d71_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182726_becd81cd-7cc9-4c5f-b1d0-3bb11a618422_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182728_50a40b50-8672-4771-a143-b182e0980792_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_102945_1ac0ec76-5bff-4f8d-9ac2-b8c25e72e322_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182531_feae3998-1478-4562-9093-9cef3f197e29_min.webp",
+            "theme": "light",
+            "eyebrow": "Wear it",
+            "title": "Pilot & Bomber Jackets",
+            "subtitle": "Squadron patches & flight-ready style",
+            "cta_text": "Shop now",
+            "link": "/collections/pilot-jackets"
+          }
+        },
+        "s13": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134959_4427527b-ab00-4ceb-b8fe-91b60445b851_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135002_ae4f905e-3374-4670-9139-89898f828682_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135006_0cffde7c-1d8a-4470-bee4-83bdac2a5d58_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135014_40a1e638-ce9d-40e4-aa8f-91bd15982243_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135028_291c9fc1-9859-4fd2-9c98-ef7eaaf8cb02_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182731_57da8bb3-a5e2-4fb0-b6c1-1ae92fea9f30_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182734_54598197-3cfb-4ddb-8dfa-fe688156c229_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182736_3625636f-78b0-41d7-bb5c-b7e5ffaaa05f_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182740_ec71a390-c4f2-42ad-afe7-979e6f65a091_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182742_bc5f1344-bfa6-4ab7-8937-e39c9e84359f_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_134959_4427527b-ab00-4ceb-b8fe-91b60445b851_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182731_57da8bb3-a5e2-4fb0-b6c1-1ae92fea9f30_min.webp",
+            "theme": "light",
+            "eyebrow": "Home & decor",
+            "title": "Aviation Door Mats",
+            "subtitle": "Arrivals & departures welcome mats",
+            "cta_text": "Shop now",
+            "link": "/collections/door-mats"
+          }
+        },
+        "s14": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135331_469f6031-56ac-4746-8e93-f701730c743a_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135335_0f01e662-efdb-42fd-a1f2-0295a018c4b9_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135338_85b36ac8-3c1a-41b6-8402-0087d042add0_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135340_5cc50fa2-4dea-48da-be57-09be0c079549_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135355_4799f7a6-8a43-4165-907e-807f847faba7_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182933_cfc4c43a-c98a-4e70-8f93-a8d952a576f1_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182936_ba7873e3-506f-44ae-9ffa-5ed991fbb1fa_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182939_5901451b-77dd-4e10-871f-942e53539c7c_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182941_643fef7a-5498-4c0f-a1aa-6aed95f2b9fe_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182943_69c2ecdd-3825-4d92-806b-e5e519d04d52_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_135331_469f6031-56ac-4746-8e93-f701730c743a_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182933_cfc4c43a-c98a-4e70-8f93-a8d952a576f1_min.webp",
+            "theme": "light",
+            "eyebrow": "Wear it",
+            "title": "Aviation Hoodies",
+            "subtitle": "Zipped, 3D & colourful pilot hoodies",
+            "cta_text": "Shop now",
+            "link": "/collections/hoodies"
+          }
+        },
+        "s15": {
+          "type": "slide",
+          "settings": {
+            "images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104606_ec398998-ec5e-4923-96ab-32b12fad0809_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104609_1f2235ab-b7c9-4b69-a8e6-cff8c06c501d_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104610_d1077cd2-b991-48f4-882a-ad79c1110d24_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104613_81b27760-82d0-4f31-870d-f9ffb3c5bc78_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104629_6f9398b7-109c-4ea1-b0f5-43822d46b616_min.webp",
+            "mobile_images": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182946_924f91b8-7b9e-44f2-bba8-7d915b28b73e_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182948_8743e15b-2a04-4b8b-892c-fbf3a16abec9_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182950_ebb3ba05-4b55-4fe4-8245-0cbd0e5d0cfd_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_184956_792e0136-3ba5-4e1b-a10b-28a425c7cb47_min.webp\nhttps://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_184958_429356e5-3a5e-41c0-b0c8-788c192cf247_min.webp",
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_104606_ec398998-ec5e-4923-96ab-32b12fad0809_min.webp",
+            "mobile_image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_369e3YWrB7kYKCvzmJuaL3HXMB6/hf_20260703_182946_924f91b8-7b9e-44f2-bba8-7d915b28b73e_min.webp",
+            "theme": "light",
+            "eyebrow": "Everyday carry",
+            "title": "Aviator Sunglasses",
+            "subtitle": "Classic pilot & polarized styles",
+            "cta_text": "Shop now",
+            "link": "/collections/sun-glasses"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13",
+        "s14",
+        "s15"
+      ],
+      "settings": {
+        "autoplay": 4
+      }
+    },
+    "cr_departments": {
+      "type": "cr-departments",
+      "blocks": {
+        "b1": {
+          "type": "category",
+          "settings": {
+            "collection": "trending-products",
+            "label": "Trending Products"
+          }
+        },
+        "b2": {
+          "type": "category",
+          "settings": {
+            "collection": "airplanes",
+            "label": "Model Airplanes"
+          }
+        },
+        "b3": {
+          "type": "category",
+          "settings": {
+            "collection": "canvas-prints",
+            "label": "Canvas Prints"
+          }
+        },
+        "b4": {
+          "type": "category",
+          "settings": {
+            "collection": "accessories",
+            "label": "Aviation Accessories"
+          }
+        },
+        "b5": {
+          "type": "category",
+          "settings": {
+            "collection": "bags-cases",
+            "label": "Bags & Cases"
+          }
+        },
+        "b6": {
+          "type": "category",
+          "settings": {
+            "collection": "clothing",
+            "label": "Clothing"
+          }
+        },
+        "b7": {
+          "type": "category",
+          "settings": {
+            "collection": "watches",
+            "label": "Watches"
+          }
+        },
+        "b8": {
+          "type": "category",
+          "settings": {
+            "collection": "key-chains",
+            "label": "Key Chains"
+          }
+        },
+        "b9": {
+          "type": "category",
+          "settings": {
+            "collection": "home-accessories",
+            "label": "Home Accessories"
+          }
+        },
+        "b10": {
+          "type": "category",
+          "settings": {
+            "collection": "jewelries",
+            "label": "Jewelries"
+          }
+        },
+        "b11": {
+          "type": "category",
+          "settings": {
+            "collection": "mugs",
+            "label": "Mugs"
+          }
+        },
+        "b12": {
+          "type": "category",
+          "settings": {
+            "collection": "phone-cases",
+            "label": "Phone Cases"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12"
+      ],
+      "settings": {
+        "heading": "Shop by category"
+      }
+    },
+    "cr_bestsellers": {
+      "type": "cr-collection-slider",
+      "settings": {
+        "heading": "Best sellers",
+        "subheading": "Loved by pilots & avgeeks worldwide",
+        "collection_handle": "best-sellers",
+        "server_count": 10,
+        "max_total": 48,
+        "show_view_all": true,
+        "view_all_text": "View All Best Sellers →",
+        "load_all": true,
+        "feed_asset": "cr-bestsellers-feed.json"
+      }
+    },
+    "cr_reviews": {
+      "type": "cr-reviews",
+      "blocks": {
+        "q1": {
+          "type": "quote",
+          "settings": {
+            "text": "Finally a shop that has my airport and my type. JFK hoodie arrived in two days.",
+            "name": "Mark R.",
+            "role": "First officer · JFK"
+          }
+        },
+        "q2": {
+          "type": "quote",
+          "settings": {
+            "text": "The F-16 print is the one I wanted, not a generic fighter. Quality is solid.",
+            "name": "Elena K.",
+            "role": "Maintenance · Ramstein"
+          }
+        },
+        "q3": {
+          "type": "quote",
+          "settings": {
+            "text": "Bought the City Series for three bases. Same language, different cities — that is the gift.",
+            "name": "James T.",
+            "role": "Cabin crew · LHR"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {}
+    },
+    "cr_news": {
+      "type": "cr-news",
+      "settings": {}
+    },
+    "cr_trust": {
+      "type": "cr-trust",
+      "settings": {}
+    },
+    "cr_city_slider": {
+      "type": "cr-collection-slider",
+      "settings": {
+        "heading": "City Series T-Shirts",
+        "subheading": "Every city, four print styles — Poster, Stamp, Monogram & Badge",
+        "collection": "city-series-t-shirts",
+        "collection_handle": "city-series-t-shirts",
+        "server_count": 8,
+        "max_total": 28,
+        "show_view_all": true,
+        "view_all_text": "See All City Series →",
+        "load_all": true,
+        "feed_asset": "cr-city-tee-feed.json",
+        "view_all2_text": "",
+        "view_all2_url": ""
+      },
+      "disabled": true
+    },
+    "cr_identity": {
+      "type": "cr-identity-finder",
+      "blocks": {
+        "p_airports": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "airports",
+            "tab": "Airport",
+            "heading": "Shop by airport code",
+            "subheading": "Your airport, your code — 1,000+ cities worldwide.",
+            "say_word": "airports",
+            "all_label": "View all airports",
+            "all_url": "/collections/airport-code-products",
+            "asset": "cr-airport-tiles.json",
+            "placeholder": "Airport code or city — JFK, LGA, EWR…"
+          }
+        },
+        "p_city": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "city",
+            "tab": "City",
+            "heading": "Shop by city name",
+            "subheading": "City Series artwork for the places you love.",
+            "say_word": "cities",
+            "all_label": "View all cities",
+            "all_url": "/collections/city-series-enthusiasts",
+            "asset": "cr-city-tiles.json",
+            "placeholder": "City name — New York, London…"
+          }
+        },
+        "p_airlines": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "airlines",
+            "tab": "Airline",
+            "heading": "Shop by airline",
+            "subheading": "Fly your colors — every fleet, every tail.",
+            "say_word": "airlines",
+            "all_label": "View all airlines",
+            "all_url": "/collections/airline-products",
+            "asset": "cr-airline-tiles.json",
+            "placeholder": "Airline — Delta, JetBlue…"
+          }
+        },
+        "p_aircraft": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "aircraft",
+            "tab": "Aircraft",
+            "heading": "Shop by aircraft",
+            "subheading": "From the 707 to the A380 — find your type.",
+            "say_word": "aircraft",
+            "all_label": "View all airplanes",
+            "all_url": "/collections/shop-by-aircraft",
+            "asset": "cr-aircraft-tiles.json",
+            "placeholder": "Type — 737, A320, 747…"
+          }
+        },
+        "p_military": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "military",
+            "tab": "Military",
+            "heading": "Shop by military aircraft",
+            "subheading": "Fighters, bombers & warbirds — pick your bird.",
+            "say_word": "military aircraft",
+            "all_label": "View all military aircraft",
+            "all_url": "/collections/military-aircraft-products",
+            "asset": "cr-military-tiles.json",
+            "placeholder": "Type — F-16, F-35, B-2…"
+          }
+        },
+        "p_heli": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "helicopters",
+            "tab": "Helicopter",
+            "heading": "Shop by helicopter",
+            "subheading": "From trainers to gunships — find your rotorcraft.",
+            "say_word": "helicopters",
+            "all_label": "View all helicopters",
+            "all_url": "/collections/helicopter-designed-products",
+            "asset": "cr-helicopter-tiles.json",
+            "placeholder": "Type — Black Hawk, Apache…"
+          }
+        },
+        "p_engine": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "engines",
+            "tab": "Engine",
+            "heading": "Shop by engine",
+            "subheading": "The powerplants behind the flight.",
+            "say_word": "engines",
+            "all_label": "View all engines",
+            "all_url": "/collections/engine-enthusiasts-products",
+            "asset": "cr-engine-tiles.json",
+            "placeholder": "Engine — CFM56, GE90, Trent…"
+          }
+        },
+        "p_drone": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "drones",
+            "tab": "Drone",
+            "heading": "Shop by drone",
+            "subheading": "Professional platforms in the air today.",
+            "say_word": "drones",
+            "all_label": "View all drones",
+            "all_url": "/collections/drone-enthusiasts-products",
+            "asset": "cr-drone-tiles.json",
+            "placeholder": "Platform — DJI Mavic, Air 3…"
+          }
+        },
+        "p_iconic": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "iconic",
+            "tab": "Iconic",
+            "heading": "Shop by Iconic design",
+            "subheading": "Slogans, statements & timeless aviation art.",
+            "say_word": "designs",
+            "all_label": "View all Iconic designs",
+            "all_url": "/collections/iconic-aviation-products",
+            "asset": "cr-iconic-tiles.json",
+            "placeholder": "Slogan — Born To Fly…"
+          }
+        },
+        "p_vintage": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "vintage",
+            "tab": "Vintage",
+            "heading": "Shop by Vintage Aviation",
+            "subheading": "Golden Age posters, airmail routes & flying boats — 432 designs across 21 product lines.",
+            "say_word": "designs",
+            "all_label": "View all Vintage Aviation",
+            "all_url": "/collections/vintage-aviation-enthusiasts",
+            "asset": "cr-vintage-tiles.json",
+            "placeholder": "Design — The Airmail Run, The Aero Club…",
+            "search_hint": "Type a design name to search"
+          }
+        },
+        "p_country": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "country",
+            "tab": "Country",
+            "heading": "Shop by country",
+            "subheading": "Country Series artwork for the places you call home.",
+            "say_word": "countries",
+            "all_label": "View all countries",
+            "all_url": "/collections/country-series-enthusiasts",
+            "asset": "cr-country-tiles.json",
+            "placeholder": "Country name — France, Japan…"
+          }
+        },
+        "p_cartoon": {
+          "type": "panel",
+          "settings": {
+            "panel_key": "cartoon",
+            "tab": "Funny Designs",
+            "heading": "Shop by Funny Designs",
+            "subheading": "Hangar humour with a smile — cartoon aircraft across 23 product lines.",
+            "say_word": "designs",
+            "all_label": "View all Funny Designs",
+            "all_url": "/collections/cartoon-airplane-helicopter-enthusiasts",
+            "asset": "cr-cartoon-tiles.json",
+            "placeholder": "Product line — T-Shirts, Hoodies, Mugs…",
+            "search_hint": "Type a product line to search"
+          }
+        }
+      },
+      "block_order": [
+        "p_airports",
+        "p_city",
+        "p_country",
+        "p_airlines",
+        "p_aircraft",
+        "p_military",
+        "p_heli",
+        "p_engine",
+        "p_drone",
+        "p_iconic",
+        "p_vintage",
+        "p_cartoon"
+      ],
+      "settings": {
+        "default_panel": "airports",
+        "fallback_url": "/collections/airport-code-products"
+      }
+    }
+  },
+  "order": [
+    "breaking_news",
+    "cr_slideshow",
+    "cr_departments",
+    "cr_identity",
+    "cr_city_slider",
+    "cr_bestsellers",
+    "cr_reviews",
+    "cr_news",
+    "cr_trust"
+  ]
+}
