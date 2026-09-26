@@ -145,7 +145,7 @@
 
   .bnt__viewport {
     overflow: hidden;
-    padding-block: 4px;
+    padding-block: 2px;
   }
 
   .bnt__track {
@@ -157,31 +157,29 @@
   .bnt__list {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 0.25rem 1.25rem;
+    justify-content: flex-start;
+    gap: 1.5rem;
     width: 100%;
     min-width: 0;
     margin: 0;
-    padding: 0.15rem 1.25rem;
+    padding: 0.2rem 1.25rem;
     box-sizing: border-box;
   }
 
   .bnt__item {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    flex: 1 1 0;
+    min-width: 0;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
 
-  .bnt__item + .bnt__item::before {
-    content: "";
-    width: 0.28rem;
-    height: 0.28rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.55);
-    flex: none;
+  .bnt__item::marker {
+    content: none;
   }
 
   .breaking-news-ticker .bnt a.bnt__link,
@@ -191,10 +189,12 @@
   .breaking-news-ticker .bnt a.bnt__link:focus,
   .breaking-news-ticker .bnt a.bnt__link:focus-visible,
   .breaking-news-ticker .bnt a.bnt__link:active {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.55rem;
-    min-height: 44px;
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
     color: #ffffff;
     text-decoration: none;
     font-size: 0.875rem;
@@ -219,8 +219,13 @@
   }
 
   .breaking-news-ticker .bnt .bnt__title {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
     color: #ffffff;
-    white-space: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .bnt__badge {
@@ -256,13 +261,35 @@
   }
 
   @media (max-width: 749px) {
-    .bnt__list {
-      padding-inline: 0.9rem;
-      gap: 1rem;
+    .bnt__viewport {
+      padding-block: 0;
     }
 
-    .bnt__item {
-      gap: 1rem;
+    .bnt__list {
+      padding: 0.4rem 0.9rem;
+      gap: 0;
+    }
+
+    .bnt__item:not(:first-child) {
+      display: none;
+    }
+
+    .breaking-news-ticker .bnt a.bnt__link {
+      min-height: 0;
+      padding-block: 0.15rem;
+      align-items: flex-start;
+    }
+
+    .breaking-news-ticker .bnt .bnt__badge {
+      margin-top: 0.15rem;
+    }
+
+    .breaking-news-ticker .bnt .bnt__title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      white-space: normal;
+      line-height: 1.3;
     }
   }
 {% endstylesheet %}
