@@ -1,0 +1,345 @@
+{%- liquid
+  assign bnt_on = true
+  if section.settings.enabled == false
+    assign bnt_on = false
+  endif
+
+  assign bnt_max = section.settings.max_items | default: 4
+  assign bnt_hours = section.settings.badge_hours | default: 48
+  if bnt_max < 3
+    assign bnt_max = 3
+  endif
+  if bnt_max > 5
+    assign bnt_max = 5
+  endif
+  if bnt_hours < 24
+    assign bnt_hours = 24
+  endif
+  if bnt_hours > 48
+    assign bnt_hours = 48
+  endif
+
+  assign bnt_window = bnt_hours | times: 3600
+  assign bnt_now = 'now' | date: '%s' | plus: 0
+  assign bnt_on_news = false
+  if blog.handle == 'news'
+    assign bnt_on_news = true
+  endif
+  assign bnt_blog = section.settings.blog
+  if bnt_blog.articles == blank
+    assign bnt_blog = blogs[section.settings.blog]
+  endif
+  if bnt_blog.articles == blank
+    assign bnt_blog = blogs.news
+  endif
+
+  assign bnt_recent = false
+  assign bnt_count = 0
+
+  if bnt_on_news and bnt_on and bnt_blog != blank
+    for article in bnt_blog.articles limit: 50
+      assign bnt_match = false
+      for tag in article.tags
+        assign bnt_tag = tag | downcase | strip
+        if bnt_tag == 'breaking'
+          assign bnt_match = true
+          break
+        endif
+      endfor
+      if bnt_match
+        if article.published_at != blank
+          assign bnt_pub = article.published_at | date: '%s' | plus: 0
+          assign bnt_age = bnt_now | minus: bnt_pub
+          if bnt_count == 0 and bnt_age <= bnt_window
+            assign bnt_recent = true
+          endif
+        endif
+        unless bnt_recent
+          break
+        endunless
+        assign bnt_count = bnt_count | plus: 1
+        if bnt_count >= bnt_max
+          break
+        endif
+      endif
+    endfor
+  endif
+
+-%}
+
+{%- if bnt_on_news and bnt_on and bnt_recent -%}
+  <section class="bnt" aria-label="{{ 'breaking_news.region_label' | t }}">
+    <div class="bnt__viewport">
+      <div class="bnt__track">
+        <ul class="bnt__list">
+            {%- assign bnt_shown = 0 -%}
+            {%- for article in bnt_blog.articles limit: 50 -%}
+              {%- liquid
+                assign bnt_match = false
+                for tag in article.tags
+                  assign bnt_tag = tag | downcase | strip
+                  if bnt_tag == 'breaking'
+                    assign bnt_match = true
+                    break
+                  endif
+                endfor
+              -%}
+              {%- if bnt_match -%}
+                {%- if bnt_shown >= bnt_max -%}
+                  {%- break -%}
+                {%- endif -%}
+                {%- liquid
+                  assign bnt_fresh = false
+                  if article.published_at != blank
+                    assign bnt_pub = article.published_at | date: '%s' | plus: 0
+                    assign bnt_age = bnt_now | minus: bnt_pub
+                    if bnt_age <= bnt_window
+                      assign bnt_fresh = true
+                    endif
+                  endif
+                  assign bnt_shown = bnt_shown | plus: 1
+                -%}
+                <li class="bnt__item">
+                  <a class="bnt__link" href="{{ article.url }}">
+                    {%- if bnt_fresh -%}
+                      <span class="bnt__badge">{{ 'breaking_news.badge' | t }}</span>
+                    {%- endif -%}
+                    <span class="bnt__title">{{ article.title | escape }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+{%- elsif bnt_on_news and request.design_mode -%}
+  <p class="bnt-editor" role="status">
+    {%- if bnt_on -%}
+      {{ 'breaking_news.editor_hidden' | t }}
+    {%- else -%}
+      {{ 'breaking_news.editor_disabled' | t }}
+    {%- endif -%}
+  </p>
+{%- endif -%}
+
+{% stylesheet %}
+  .shopify-section.breaking-news-ticker:not(:has(.bnt)):not(:has(.bnt-editor)) {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    border: 0 !important;
+  }
+
+  .bnt {
+    --bnt-ink: #14233b;
+    --bnt-text: #ffffff;
+    --bnt-badge: #9b1c1c;
+    background: var(--bnt-ink);
+    color: var(--bnt-text);
+    font-family: var(--baseFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  .bnt__viewport {
+    overflow: hidden;
+    padding-block: 2px;
+  }
+
+  .bnt__track {
+    display: flex;
+    width: auto;
+    animation: none;
+  }
+
+  .bnt__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.2rem 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .bnt__item {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .bnt__item::marker {
+    content: none;
+  }
+
+  .breaking-news-ticker .bnt a.bnt__link,
+  .breaking-news-ticker .bnt a.bnt__link:link,
+  .breaking-news-ticker .bnt a.bnt__link:visited,
+  .breaking-news-ticker .bnt a.bnt__link:hover,
+  .breaking-news-ticker .bnt a.bnt__link:focus,
+  .breaking-news-ticker .bnt a.bnt__link:focus-visible,
+  .breaking-news-ticker .bnt a.bnt__link:active {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .breaking-news-ticker .bnt a.bnt__link:hover .bnt__title,
+  .breaking-news-ticker .bnt a.bnt__link:focus .bnt__title,
+  .breaking-news-ticker .bnt a.bnt__link:focus-visible .bnt__title,
+  .breaking-news-ticker .bnt a.bnt__link:active .bnt__title {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+    text-underline-offset: 0.15em;
+  }
+
+  .breaking-news-ticker .bnt a.bnt__link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .breaking-news-ticker .bnt .bnt__title {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    color: #ffffff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .bnt__badge {
+    flex: none;
+    background: var(--bnt-badge);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 0.3rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .bnt-editor {
+    margin: 0;
+    padding: 0.65rem 1rem;
+    background: #14233b;
+    color: #ffffff;
+    font-family: var(--baseFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bnt,
+    .bnt__track,
+    .bnt__link {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  @media (max-width: 749px) {
+    .bnt__viewport {
+      padding-block: 0;
+    }
+
+    .bnt__list {
+      padding: 0.4rem 0.9rem;
+      gap: 0;
+    }
+
+    .bnt__item:not(:first-child) {
+      display: none;
+    }
+
+    .breaking-news-ticker .bnt a.bnt__link {
+      min-height: 0;
+      padding-block: 0.15rem;
+      align-items: flex-start;
+    }
+
+    .breaking-news-ticker .bnt .bnt__badge {
+      margin-top: 0.15rem;
+    }
+
+    .breaking-news-ticker .bnt .bnt__title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      white-space: normal;
+      line-height: 1.3;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Breaking News ticker",
+  "class": "breaking-news-ticker",
+  "limit": 1,
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show ticker",
+      "default": true
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Shown only on the News blog. Articles tagged Breaking are eligible. The tag match ignores letter case. If no blog is selected, the News blog is used."
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "label": "Maximum articles",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_hours",
+      "label": "Breaking window",
+      "min": 24,
+      "max": 48,
+      "step": 1,
+      "unit": "h",
+      "default": 48,
+      "info": "A Breaking article published inside this window shows a Breaking badge. The ticker is omitted entirely unless the newest Breaking article is inside the window. Liquid now can be cached, so the window is approximate."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breaking News ticker"
+    }
+  ]
+}
+{% endschema %}
