@@ -1,0 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breaking_news": {
+      "type": "breaking-news-ticker",
+      "settings": {
+        "enabled": true,
+        "blog": "news",
+        "max_items": 4,
+        "badge_hours": 48
+      }
+    },
+    "news-v2": {
+      "type": "blog-news-v2",
+      "settings": {
+        "blog": "news"
+      }
+    }
+  },
+  "order": [
+    "breaking_news",
+    "news-v2"
+  ]
+}

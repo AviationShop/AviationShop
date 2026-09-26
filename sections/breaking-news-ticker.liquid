@@ -21,6 +21,10 @@
 
   assign bnt_window = bnt_hours | times: 3600
   assign bnt_now = 'now' | date: '%s' | plus: 0
+  assign bnt_on_news = false
+  if blog.handle == 'news'
+    assign bnt_on_news = true
+  endif
   assign bnt_blog = section.settings.blog
   if bnt_blog.articles == blank
     assign bnt_blog = blogs[section.settings.blog]
@@ -32,7 +36,7 @@
   assign bnt_recent = false
   assign bnt_count = 0
 
-  if bnt_on and bnt_blog != blank
+  if bnt_on_news and bnt_on and bnt_blog != blank
     for article in bnt_blog.articles limit: 50
       assign bnt_match = false
       for tag in article.tags
@@ -61,26 +65,13 @@
     endfor
   endif
 
-  assign bnt_copies = 2
-  if bnt_count < 2
-    assign bnt_copies = 1
-  endif
 -%}
 
-{%- if bnt_on and bnt_recent -%}
-  <section
-    class="bnt{% if bnt_copies == 1 %} bnt--static{% endif %}"
-    aria-label="{{ 'breaking_news.region_label' | t }}"
-  >
+{%- if bnt_on_news and bnt_on and bnt_recent -%}
+  <section class="bnt" aria-label="{{ 'breaking_news.region_label' | t }}">
     <div class="bnt__viewport">
       <div class="bnt__track">
-        {%- for bnt_copy in (1..bnt_copies) -%}
-          <ul
-            class="bnt__list{% if bnt_copy == 2 %} bnt__list--clone{% endif %}"
-            {% if bnt_copy == 2 %}
-              aria-hidden="true" inert
-            {% endif %}
-          >
+        <ul class="bnt__list">
             {%- assign bnt_shown = 0 -%}
             {%- for article in bnt_blog.articles limit: 50 -%}
               {%- liquid
@@ -118,12 +109,11 @@
                 </li>
               {%- endif -%}
             {%- endfor -%}
-          </ul>
-        {%- endfor -%}
+        </ul>
       </div>
     </div>
   </section>
-{%- elsif request.design_mode -%}
+{%- elsif bnt_on_news and request.design_mode -%}
   <p class="bnt-editor" role="status">
     {%- if bnt_on -%}
       {{ 'breaking_news.editor_hidden' | t }}
@@ -154,42 +144,27 @@
   }
 
   .bnt__viewport {
-    container-type: inline-size;
     overflow: hidden;
     padding-block: 4px;
   }
 
   .bnt__track {
     display: flex;
-    width: max-content;
-    animation: bnt-marquee 40s linear infinite;
-  }
-
-  .bnt__viewport:hover .bnt__track,
-  .bnt__viewport:focus-within .bnt__track {
-    animation-play-state: paused;
-  }
-
-  .bnt--static .bnt__track {
-    animation: none;
     width: auto;
+    animation: none;
   }
 
   .bnt__list {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1.25rem;
-    min-width: 100cqi;
-    flex-shrink: 0;
-    margin: 0;
-    padding: 0 1.25rem;
-    box-sizing: border-box;
-  }
-
-  .bnt--static .bnt__list {
-    min-width: 0;
+    gap: 0.25rem 1.25rem;
     width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.15rem 1.25rem;
+    box-sizing: border-box;
   }
 
   .bnt__item {
@@ -245,7 +220,7 @@
 
   .breaking-news-ticker .bnt .bnt__title {
     color: #ffffff;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .bnt__badge {
@@ -271,32 +246,12 @@
     line-height: 1.4;
   }
 
-  @keyframes bnt-marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .bnt__track {
+    .bnt,
+    .bnt__track,
+    .bnt__link {
       animation: none;
-      width: auto;
-    }
-
-    .bnt__list--clone {
-      display: none;
-    }
-
-    .bnt__viewport {
-      overflow-x: auto;
-    }
-
-    .bnt__list {
-      min-width: 0;
-      width: max-content;
+      transition: none;
     }
   }
 
@@ -318,7 +273,7 @@
   "class": "breaking-news-ticker",
   "limit": 1,
   "enabled_on": {
-    "templates": ["index"]
+    "templates": ["blog"]
   },
   "settings": [
     {
@@ -331,7 +286,7 @@
       "type": "blog",
       "id": "blog",
       "label": "Blog",
-      "info": "Articles tagged Breaking are eligible. The tag match ignores letter case. If no blog is selected, the News blog is used."
+      "info": "Shown only on the News blog. Articles tagged Breaking are eligible. The tag match ignores letter case. If no blog is selected, the News blog is used."
     },
     {
       "type": "range",
